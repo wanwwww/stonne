@@ -16,14 +16,15 @@
 #include "ReduceNetwork.h"
 #include "MultiplierNetwork.h"
 
-//  
+
+class NeuronStateUpdater; // 前向声明
 
 class MemoryController : Unit {        
 public:
     
     MemoryController(id_t id, std::string name) : Unit(id, name){}
     virtual ~MemoryController() {}
-    virtual void setLayer(DNNLayer* dnn_layer,  address_t input_address, address_t filter_address, address_t output_address, Dataflow dataflow) {assert(false);}
+    virtual void setLayer(DNNLayer* dnn_layer,  address_t input_address, address_t filter_address, address_t output_address, address_t neuron_state, Dataflow dataflow) {assert(false);}
     virtual void setTile(Tile* current_tile) {assert(false);}
     virtual void setReadConnections(std::vector<Connection*> read_connections) {assert(false);}
     virtual void setWriteConnections(std::vector<Connection*> write_port_connections) {assert(false);} //All the write connections must be set at a time
@@ -32,6 +33,10 @@ public:
     virtual void setReduceNetwork(ReduceNetwork* reduce_network) {assert(false);}
     //Used to configure the MultiplierNetwork according to the controller if needed
     virtual void setMultiplierNetwork(MultiplierNetwork* multiplier_network) {assert(false);} 
+
+    // add 
+    void setUpdateNetwork(NeuronStateUpdater* update_network);
+
     virtual void cycle() {assert(false);}
     virtual bool isExecutionFinished() {assert(false);}
     virtual void setDenseSpatialData(unsigned int T_N, unsigned int T_K){assert(false);}

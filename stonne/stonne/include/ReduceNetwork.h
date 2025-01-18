@@ -24,7 +24,7 @@ public:
     ReduceNetwork(id_t id, std::string name)  : Unit(id, name) {}
     virtual ~ReduceNetwork() {}
     // 配置网络中的内存连接，将所有内存端口从总线（busID,lineID）连接到其对应的节点
-    virtual void setMemoryConnections(std::vector<std::vector<Connection*>> memoryConnections) {assert(false);} //Connect all the memory ports from buses (busID, lineID) to its corresponding switches
+    virtual void setMemoryConnections(std::vector<Connection*> memoryConnections) {assert(false);} //Connect all the memory ports from buses (busID, lineID) to its corresponding switches
     // 获取最后一级连接，通常是输出连接
     virtual std::map<int, Connection*> getLastLevelConnections() {assert(false);}
     // 设置输出连接。用于将规约结果发送到预取缓冲区

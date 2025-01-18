@@ -32,9 +32,10 @@ private:
 public:
     TemporalRN(id_t id, std::string name, Config stonne_cfg, Connection* output_connection);
     ~TemporalRN();
-    void setMemoryConnections(std::vector<std::vector<Connection*>> memoryConnections); //Connect all the memory ports (busID, lineID) to its corresponding accumulator
+    // 设置与总线的连接 
+    void setMemoryConnections(std::vector<Connection*> memoryConnections); //Connect all the memory ports (busID, lineID) to its corresponding accumulator
     std::map<int, Connection*> getLastLevelConnections();
-    // 设置与预取缓冲区的输出连接
+    
     void setOutputConnection(Connection* outputConnection)  { this->outputConnection = outputConnection; } //This function set the outputConnection with the Prefetch buffer
     void configureSignals(Tile* current_tile, DNNLayer* dnn_layer, unsigned int ms_size, unsigned int n_folding);
     void configureSparseSignals(std::vector<SparseVN> sparseVNs, DNNLayer* dnn_layer, unsigned int ms_size);

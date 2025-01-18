@@ -86,6 +86,7 @@ void CollectionBusLine::cycle() {
     //End to track information and the actual code to perform the cycle is executed
     
     // 轮询从非空的FIFO中取出一个数据包，
+    // 一次只取出一个数据包！！！
     std::vector<DataPackage*> data_to_send;
     while(!selected && (n_iters < input_fifos.size())) { //if input not found or there is still data to look up
         if(!input_fifos[next_input_selected]->isEmpty()) { //If there is data in this input then
@@ -103,7 +104,6 @@ void CollectionBusLine::cycle() {
     // 将数据包发送到输出连接
     if(selected) {
         this->output_port->send(data_to_send);
-
     }
  
 }

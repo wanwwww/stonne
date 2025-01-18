@@ -313,6 +313,22 @@ std::string get_string_dataflow_type(Dataflow dataflow) {
     }
 }
 
+// add
+pooling_t get_type_pooling_type (std::string pooling_type){
+    if(pooling_type=="MAXPOOLING") {
+        return MAXPOOLING;
+    }
+
+    else if(pooling_type=="AVERAGEPOOLING") {
+        return  AVERAGEPOOLING;
+    }
+
+    else {
+        std::cout << pooling_type << " Not found" << std::endl;
+        assert(false);
+    }
+}
+
 
 
 

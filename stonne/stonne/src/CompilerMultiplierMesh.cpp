@@ -38,6 +38,7 @@ void CompilerMultiplierMesh::generate_ms_signals(unsigned int ms_rows, unsigned 
             if((i < rows_used) && (j < cols_used)) { // VN的配置，为每个用到的乘法器设置一个编号 
                 unsigned int VN = i*cols_used+j;
                 ms_vn_configuration[ms_index]=VN;
+                //std::cout<<"====================== "<<VN<<" ==================================="<<std::endl;
             }
 
             if((i < (rows_used-1)) && (j < cols_used)) {

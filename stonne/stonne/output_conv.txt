@@ -1,0 +1,5679 @@
+Changing R to 2
+Changing S to 2
+Changing C to 3
+Changing G to 1
+Changing K to 8
+Changing N to 1
+Changing X to 5
+Changing Y to 5
+Changing T_R to 1
+Changing T_S to 1
+Changing T_C to 1
+Changing T_G to 1
+Changing T_K to 4
+Changing T_N to 1
+Changing T_X_ to 4
+Changing T_Y_ to 1
+Changing ms_rows to 4
+Changing ms_cols to 4
+Changing dn_bw to 8
+Changing rn_bw to 16
+Changing accumulation_buffer to 1
+Changing rn_type to TEMPORALRN
+Changing mn_type to OS_MESH
+Changing mem_ctrl to TPU_OS_DENSE
+Changing neuron membrane potential threshold to 30
+Changing timestamp to 1
+Changing pooling_type to MAXPOOLING
+Output Size: (X'=4, Y'=4)
+output rows : 4
+output cols : 4
+ M  :  16
+ K  :  12
+ N  :  8
+Loading Tile: <T_R=1, T_S=1, T_C=1, T_K=4, T_G=1, T_N=1, T_X'=4, T_Y'=1>
+
+cycle : 0
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 1
+mem state : 1
+Current timestamp : 0
+the address of weight is : 0
+The weight taken out is : 7
+the address of weight is : 12
+The weight taken out is : 3
+the address of weight is : 24
+The weight taken out is : 3
+the address of weight is : 36
+The weight taken out is : 4
+
+the address of input is : 0
+The input taken out is : 1
+
+the address of input is : 12
+The input taken out is : 0
+
+the address of input is : 24
+The input taken out is : 0
+
+the address of input is : 36
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 2
+mem state : 1
+Current timestamp : 0
+the address of weight is : 1
+The weight taken out is : 2
+the address of weight is : 13
+The weight taken out is : 2
+the address of weight is : 25
+The weight taken out is : 3
+the address of weight is : 37
+The weight taken out is : 5
+
+the address of input is : 1
+The input taken out is : 0
+
+the address of input is : 13
+The input taken out is : 1
+
+the address of input is : 25
+The input taken out is : 0
+
+the address of input is : 37
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 3
+mem state : 1
+Current timestamp : 0
+the address of weight is : 2
+The weight taken out is : 4
+the address of weight is : 14
+The weight taken out is : 7
+the address of weight is : 26
+The weight taken out is : 2
+the address of weight is : 38
+The weight taken out is : 0
+
+the address of input is : 2
+The input taken out is : 1
+
+the address of input is : 14
+The input taken out is : 1
+
+the address of input is : 26
+The input taken out is : 0
+
+the address of input is : 38
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 4
+mem state : 1
+Current timestamp : 0
+the address of weight is : 3
+The weight taken out is : 3
+the address of weight is : 15
+The weight taken out is : 4
+the address of weight is : 27
+The weight taken out is : 2
+the address of weight is : 39
+The weight taken out is : 6
+
+the address of input is : 3
+The input taken out is : 1
+
+the address of input is : 15
+The input taken out is : 0
+
+the address of input is : 27
+The input taken out is : 1
+
+the address of input is : 39
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 5
+mem state : 1
+Current timestamp : 0
+the address of weight is : 4
+The weight taken out is : 6
+the address of weight is : 16
+The weight taken out is : 4
+the address of weight is : 28
+The weight taken out is : 2
+the address of weight is : 40
+The weight taken out is : 1
+
+the address of input is : 4
+The input taken out is : 1
+
+the address of input is : 16
+The input taken out is : 0
+
+the address of input is : 28
+The input taken out is : 1
+
+the address of input is : 40
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 6
+mem state : 1
+Current timestamp : 0
+the address of weight is : 5
+The weight taken out is : 7
+the address of weight is : 17
+The weight taken out is : 4
+the address of weight is : 29
+The weight taken out is : 3
+the address of weight is : 41
+The weight taken out is : 1
+
+the address of input is : 5
+The input taken out is : 1
+
+the address of input is : 17
+The input taken out is : 0
+
+the address of input is : 29
+The input taken out is : 1
+
+the address of input is : 41
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 7
+mem state : 1
+Current timestamp : 0
+the address of weight is : 6
+The weight taken out is : 0
+the address of weight is : 18
+The weight taken out is : 0
+the address of weight is : 30
+The weight taken out is : 1
+the address of weight is : 42
+The weight taken out is : 1
+
+the address of input is : 6
+The input taken out is : 0
+
+the address of input is : 18
+The input taken out is : 0
+
+the address of input is : 30
+The input taken out is : 1
+
+the address of input is : 42
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 8
+mem state : 1
+Current timestamp : 0
+the address of weight is : 7
+The weight taken out is : 4
+the address of weight is : 19
+The weight taken out is : 3
+the address of weight is : 31
+The weight taken out is : 1
+the address of weight is : 43
+The weight taken out is : 4
+
+the address of input is : 7
+The input taken out is : 0
+
+the address of input is : 19
+The input taken out is : 0
+
+the address of input is : 31
+The input taken out is : 0
+
+the address of input is : 43
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 9
+mem state : 1
+Current timestamp : 0
+the address of weight is : 8
+The weight taken out is : 2
+the address of weight is : 20
+The weight taken out is : 4
+the address of weight is : 32
+The weight taken out is : 6
+the address of weight is : 44
+The weight taken out is : 3
+
+the address of input is : 8
+The input taken out is : 1
+
+the address of input is : 20
+The input taken out is : 1
+
+the address of input is : 32
+The input taken out is : 0
+
+the address of input is : 44
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 10
+mem state : 1
+Current timestamp : 0
+the address of weight is : 9
+The weight taken out is : 4
+the address of weight is : 21
+The weight taken out is : 2
+the address of weight is : 33
+The weight taken out is : 5
+the address of weight is : 45
+The weight taken out is : 0
+
+the address of input is : 9
+The input taken out is : 1
+
+the address of input is : 21
+The input taken out is : 0
+
+the address of input is : 33
+The input taken out is : 0
+
+the address of input is : 45
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 11
+mem state : 1
+Current timestamp : 0
+the address of weight is : 10
+The weight taken out is : 0
+the address of weight is : 22
+The weight taken out is : 2
+the address of weight is : 34
+The weight taken out is : 4
+the address of weight is : 46
+The weight taken out is : 1
+
+the address of input is : 10
+The input taken out is : 0
+
+the address of input is : 22
+The input taken out is : 1
+
+the address of input is : 34
+The input taken out is : 1
+
+the address of input is : 46
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 12
+mem state : 1
+Current timestamp : 0
+the address of weight is : 11
+The weight taken out is : 3
+the address of weight is : 23
+The weight taken out is : 6
+the address of weight is : 35
+The weight taken out is : 4
+the address of weight is : 47
+The weight taken out is : 7
+
+the address of input is : 11
+The input taken out is : 1
+
+the address of input is : 23
+The input taken out is : 1
+
+the address of input is : 35
+The input taken out is : 1
+
+the address of input is : 47
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 13
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 14
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 15
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 16
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 1
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 17
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 2
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 3
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 2
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 18
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 4
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 5
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 6
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 19
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 7
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 8
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 9
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 10
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 11
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 0
+the num is 13
+pooling
+the add result is 1
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 20
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 12
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 13
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 14
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 21
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 15
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 16
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 17
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 18
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 0
+
+cycle : 22
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 19
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 23
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 20
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 24
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 25
+mem state : 1
+Current timestamp : 0
+the address of weight is : 48
+The weight taken out is : 5
+the address of weight is : 60
+The weight taken out is : 5
+the address of weight is : 72
+The weight taken out is : 0
+the address of weight is : 84
+The weight taken out is : 3
+
+the address of input is : 0
+The input taken out is : 1
+
+the address of input is : 12
+The input taken out is : 0
+
+the address of input is : 24
+The input taken out is : 0
+
+the address of input is : 36
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 26
+mem state : 1
+Current timestamp : 0
+the address of weight is : 49
+The weight taken out is : 1
+the address of weight is : 61
+The weight taken out is : 2
+the address of weight is : 73
+The weight taken out is : 4
+the address of weight is : 85
+The weight taken out is : 3
+
+the address of input is : 1
+The input taken out is : 0
+
+the address of input is : 13
+The input taken out is : 1
+
+the address of input is : 25
+The input taken out is : 0
+
+the address of input is : 37
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 27
+mem state : 1
+Current timestamp : 0
+the address of weight is : 50
+The weight taken out is : 3
+the address of weight is : 62
+The weight taken out is : 3
+the address of weight is : 74
+The weight taken out is : 3
+the address of weight is : 86
+The weight taken out is : 0
+
+the address of input is : 2
+The input taken out is : 1
+
+the address of input is : 14
+The input taken out is : 1
+
+the address of input is : 26
+The input taken out is : 0
+
+the address of input is : 38
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 28
+mem state : 1
+Current timestamp : 0
+the address of weight is : 51
+The weight taken out is : 1
+the address of weight is : 63
+The weight taken out is : 3
+the address of weight is : 75
+The weight taken out is : 4
+the address of weight is : 87
+The weight taken out is : 4
+
+the address of input is : 3
+The input taken out is : 1
+
+the address of input is : 15
+The input taken out is : 0
+
+the address of input is : 27
+The input taken out is : 1
+
+the address of input is : 39
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 29
+mem state : 1
+Current timestamp : 0
+the address of weight is : 52
+The weight taken out is : 3
+the address of weight is : 64
+The weight taken out is : 0
+the address of weight is : 76
+The weight taken out is : 5
+the address of weight is : 88
+The weight taken out is : 4
+
+the address of input is : 4
+The input taken out is : 1
+
+the address of input is : 16
+The input taken out is : 0
+
+the address of input is : 28
+The input taken out is : 1
+
+the address of input is : 40
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 30
+mem state : 1
+Current timestamp : 0
+the address of weight is : 53
+The weight taken out is : 5
+the address of weight is : 65
+The weight taken out is : 0
+the address of weight is : 77
+The weight taken out is : 4
+the address of weight is : 89
+The weight taken out is : 1
+
+the address of input is : 5
+The input taken out is : 1
+
+the address of input is : 17
+The input taken out is : 0
+
+the address of input is : 29
+The input taken out is : 1
+
+the address of input is : 41
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 31
+mem state : 1
+Current timestamp : 0
+the address of weight is : 54
+The weight taken out is : 7
+the address of weight is : 66
+The weight taken out is : 7
+the address of weight is : 78
+The weight taken out is : 3
+the address of weight is : 90
+The weight taken out is : 6
+
+the address of input is : 6
+The input taken out is : 0
+
+the address of input is : 18
+The input taken out is : 0
+
+the address of input is : 30
+The input taken out is : 1
+
+the address of input is : 42
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 32
+mem state : 1
+Current timestamp : 0
+the address of weight is : 55
+The weight taken out is : 7
+the address of weight is : 67
+The weight taken out is : 4
+the address of weight is : 79
+The weight taken out is : 2
+the address of weight is : 91
+The weight taken out is : 1
+
+the address of input is : 7
+The input taken out is : 0
+
+the address of input is : 19
+The input taken out is : 0
+
+the address of input is : 31
+The input taken out is : 0
+
+the address of input is : 43
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 33
+mem state : 1
+Current timestamp : 0
+the address of weight is : 56
+The weight taken out is : 0
+the address of weight is : 68
+The weight taken out is : 5
+the address of weight is : 80
+The weight taken out is : 5
+the address of weight is : 92
+The weight taken out is : 4
+
+the address of input is : 8
+The input taken out is : 1
+
+the address of input is : 20
+The input taken out is : 1
+
+the address of input is : 32
+The input taken out is : 0
+
+the address of input is : 44
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 34
+mem state : 1
+Current timestamp : 0
+the address of weight is : 57
+The weight taken out is : 1
+the address of weight is : 69
+The weight taken out is : 7
+the address of weight is : 81
+The weight taken out is : 6
+the address of weight is : 93
+The weight taken out is : 2
+
+the address of input is : 9
+The input taken out is : 1
+
+the address of input is : 21
+The input taken out is : 0
+
+the address of input is : 33
+The input taken out is : 0
+
+the address of input is : 45
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 35
+mem state : 1
+Current timestamp : 0
+the address of weight is : 58
+The weight taken out is : 1
+the address of weight is : 70
+The weight taken out is : 3
+the address of weight is : 82
+The weight taken out is : 3
+the address of weight is : 94
+The weight taken out is : 4
+
+the address of input is : 10
+The input taken out is : 0
+
+the address of input is : 22
+The input taken out is : 1
+
+the address of input is : 34
+The input taken out is : 1
+
+the address of input is : 46
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 36
+mem state : 1
+Current timestamp : 0
+the address of weight is : 59
+The weight taken out is : 2
+the address of weight is : 71
+The weight taken out is : 6
+the address of weight is : 83
+The weight taken out is : 1
+the address of weight is : 95
+The weight taken out is : 4
+
+the address of input is : 11
+The input taken out is : 1
+
+the address of input is : 23
+The input taken out is : 1
+
+the address of input is : 35
+The input taken out is : 1
+
+the address of input is : 47
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 37
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 38
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 39
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 40
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 21
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 41
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 22
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 23
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 0
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 42
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 24
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 25
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 26
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 43
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 27
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 28
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 29
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 30
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 31
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 0
+the num is 13
+pooling
+the add result is 1
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 44
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 32
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 33
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 34
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 45
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 35
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 36
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 37
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 38
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 0
+
+cycle : 46
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 39
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 47
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 40
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 48
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 49
+mem state : 1
+Current timestamp : 0
+the address of weight is : 0
+The weight taken out is : 7
+the address of weight is : 12
+The weight taken out is : 3
+the address of weight is : 24
+The weight taken out is : 3
+the address of weight is : 36
+The weight taken out is : 4
+
+the address of input is : 48
+The input taken out is : 1
+
+the address of input is : 60
+The input taken out is : 1
+
+the address of input is : 72
+The input taken out is : 0
+
+the address of input is : 84
+The input taken out is : 6
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 50
+mem state : 1
+Current timestamp : 0
+the address of weight is : 1
+The weight taken out is : 2
+the address of weight is : 13
+The weight taken out is : 2
+the address of weight is : 25
+The weight taken out is : 3
+the address of weight is : 37
+The weight taken out is : 5
+
+the address of input is : 49
+The input taken out is : 0
+
+the address of input is : 61
+The input taken out is : 1
+
+the address of input is : 73
+The input taken out is : 1
+
+the address of input is : 85
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 51
+mem state : 1
+Current timestamp : 0
+the address of weight is : 2
+The weight taken out is : 4
+the address of weight is : 14
+The weight taken out is : 7
+the address of weight is : 26
+The weight taken out is : 2
+the address of weight is : 38
+The weight taken out is : 0
+
+the address of input is : 50
+The input taken out is : 1
+
+the address of input is : 62
+The input taken out is : 0
+
+the address of input is : 74
+The input taken out is : 0
+
+the address of input is : 86
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 52
+mem state : 1
+Current timestamp : 0
+the address of weight is : 3
+The weight taken out is : 3
+the address of weight is : 15
+The weight taken out is : 4
+the address of weight is : 27
+The weight taken out is : 2
+the address of weight is : 39
+The weight taken out is : 6
+
+the address of input is : 51
+The input taken out is : 0
+
+the address of input is : 63
+The input taken out is : 1
+
+the address of input is : 75
+The input taken out is : 0
+
+the address of input is : 87
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 53
+mem state : 1
+Current timestamp : 0
+the address of weight is : 4
+The weight taken out is : 6
+the address of weight is : 16
+The weight taken out is : 4
+the address of weight is : 28
+The weight taken out is : 2
+the address of weight is : 40
+The weight taken out is : 1
+
+the address of input is : 52
+The input taken out is : 1
+
+the address of input is : 64
+The input taken out is : 0
+
+the address of input is : 76
+The input taken out is : 0
+
+the address of input is : 88
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 54
+mem state : 1
+Current timestamp : 0
+the address of weight is : 5
+The weight taken out is : 7
+the address of weight is : 17
+The weight taken out is : 4
+the address of weight is : 29
+The weight taken out is : 3
+the address of weight is : 41
+The weight taken out is : 1
+
+the address of input is : 53
+The input taken out is : 0
+
+the address of input is : 65
+The input taken out is : 1
+
+the address of input is : 77
+The input taken out is : 0
+
+the address of input is : 89
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 55
+mem state : 1
+Current timestamp : 0
+the address of weight is : 6
+The weight taken out is : 0
+the address of weight is : 18
+The weight taken out is : 0
+the address of weight is : 30
+The weight taken out is : 1
+the address of weight is : 42
+The weight taken out is : 1
+
+the address of input is : 54
+The input taken out is : 0
+
+the address of input is : 66
+The input taken out is : 0
+
+the address of input is : 78
+The input taken out is : 401
+
+the address of input is : 90
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 56
+mem state : 1
+Current timestamp : 0
+the address of weight is : 7
+The weight taken out is : 4
+the address of weight is : 19
+The weight taken out is : 3
+the address of weight is : 31
+The weight taken out is : 1
+the address of weight is : 43
+The weight taken out is : 4
+
+the address of input is : 55
+The input taken out is : 1
+
+the address of input is : 67
+The input taken out is : 1
+
+the address of input is : 79
+The input taken out is : 0
+
+the address of input is : 91
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 57
+mem state : 1
+Current timestamp : 0
+the address of weight is : 8
+The weight taken out is : 2
+the address of weight is : 20
+The weight taken out is : 4
+the address of weight is : 32
+The weight taken out is : 6
+the address of weight is : 44
+The weight taken out is : 3
+
+the address of input is : 56
+The input taken out is : 0
+
+the address of input is : 68
+The input taken out is : 1
+
+the address of input is : 80
+The input taken out is : 7
+
+the address of input is : 92
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 58
+mem state : 1
+Current timestamp : 0
+the address of weight is : 9
+The weight taken out is : 4
+the address of weight is : 21
+The weight taken out is : 2
+the address of weight is : 33
+The weight taken out is : 5
+the address of weight is : 45
+The weight taken out is : 0
+
+the address of input is : 57
+The input taken out is : 0
+
+the address of input is : 69
+The input taken out is : 1
+
+the address of input is : 81
+The input taken out is : 2
+
+the address of input is : 93
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 59
+mem state : 1
+Current timestamp : 0
+the address of weight is : 10
+The weight taken out is : 0
+the address of weight is : 22
+The weight taken out is : 2
+the address of weight is : 34
+The weight taken out is : 4
+the address of weight is : 46
+The weight taken out is : 1
+
+the address of input is : 58
+The input taken out is : 0
+
+the address of input is : 70
+The input taken out is : 0
+
+the address of input is : 82
+The input taken out is : 4
+
+the address of input is : 94
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 60
+mem state : 1
+Current timestamp : 0
+the address of weight is : 11
+The weight taken out is : 3
+the address of weight is : 23
+The weight taken out is : 6
+the address of weight is : 35
+The weight taken out is : 4
+the address of weight is : 47
+The weight taken out is : 7
+
+the address of input is : 59
+The input taken out is : 1
+
+the address of input is : 71
+The input taken out is : 1
+
+the address of input is : 83
+The input taken out is : 3
+
+the address of input is : 95
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 61
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 62
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 63
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 64
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 41
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 65
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 42
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 43
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 1
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 66
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 44
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 45
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 46
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 67
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 47
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 48
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 49
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 50
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 51
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 1
+the num is 13
+pooling
+the add result is 4
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 68
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 52
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 53
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 54
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 69
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 55
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 56
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 57
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 58
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 4
+
+cycle : 70
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 59
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 71
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 60
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 72
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 73
+mem state : 1
+Current timestamp : 0
+the address of weight is : 48
+The weight taken out is : 5
+the address of weight is : 60
+The weight taken out is : 5
+the address of weight is : 72
+The weight taken out is : 0
+the address of weight is : 84
+The weight taken out is : 3
+
+the address of input is : 48
+The input taken out is : 1
+
+the address of input is : 60
+The input taken out is : 1
+
+the address of input is : 72
+The input taken out is : 0
+
+the address of input is : 84
+The input taken out is : 6
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 74
+mem state : 1
+Current timestamp : 0
+the address of weight is : 49
+The weight taken out is : 1
+the address of weight is : 61
+The weight taken out is : 2
+the address of weight is : 73
+The weight taken out is : 4
+the address of weight is : 85
+The weight taken out is : 3
+
+the address of input is : 49
+The input taken out is : 0
+
+the address of input is : 61
+The input taken out is : 1
+
+the address of input is : 73
+The input taken out is : 1
+
+the address of input is : 85
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 75
+mem state : 1
+Current timestamp : 0
+the address of weight is : 50
+The weight taken out is : 3
+the address of weight is : 62
+The weight taken out is : 3
+the address of weight is : 74
+The weight taken out is : 3
+the address of weight is : 86
+The weight taken out is : 0
+
+the address of input is : 50
+The input taken out is : 1
+
+the address of input is : 62
+The input taken out is : 0
+
+the address of input is : 74
+The input taken out is : 0
+
+the address of input is : 86
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 76
+mem state : 1
+Current timestamp : 0
+the address of weight is : 51
+The weight taken out is : 1
+the address of weight is : 63
+The weight taken out is : 3
+the address of weight is : 75
+The weight taken out is : 4
+the address of weight is : 87
+The weight taken out is : 4
+
+the address of input is : 51
+The input taken out is : 0
+
+the address of input is : 63
+The input taken out is : 1
+
+the address of input is : 75
+The input taken out is : 0
+
+the address of input is : 87
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 77
+mem state : 1
+Current timestamp : 0
+the address of weight is : 52
+The weight taken out is : 3
+the address of weight is : 64
+The weight taken out is : 0
+the address of weight is : 76
+The weight taken out is : 5
+the address of weight is : 88
+The weight taken out is : 4
+
+the address of input is : 52
+The input taken out is : 1
+
+the address of input is : 64
+The input taken out is : 0
+
+the address of input is : 76
+The input taken out is : 0
+
+the address of input is : 88
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 78
+mem state : 1
+Current timestamp : 0
+the address of weight is : 53
+The weight taken out is : 5
+the address of weight is : 65
+The weight taken out is : 0
+the address of weight is : 77
+The weight taken out is : 4
+the address of weight is : 89
+The weight taken out is : 1
+
+the address of input is : 53
+The input taken out is : 0
+
+the address of input is : 65
+The input taken out is : 1
+
+the address of input is : 77
+The input taken out is : 0
+
+the address of input is : 89
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 79
+mem state : 1
+Current timestamp : 0
+the address of weight is : 54
+The weight taken out is : 7
+the address of weight is : 66
+The weight taken out is : 7
+the address of weight is : 78
+The weight taken out is : 3
+the address of weight is : 90
+The weight taken out is : 6
+
+the address of input is : 54
+The input taken out is : 0
+
+the address of input is : 66
+The input taken out is : 0
+
+the address of input is : 78
+The input taken out is : 401
+
+the address of input is : 90
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 80
+mem state : 1
+Current timestamp : 0
+the address of weight is : 55
+The weight taken out is : 7
+the address of weight is : 67
+The weight taken out is : 4
+the address of weight is : 79
+The weight taken out is : 2
+the address of weight is : 91
+The weight taken out is : 1
+
+the address of input is : 55
+The input taken out is : 1
+
+the address of input is : 67
+The input taken out is : 1
+
+the address of input is : 79
+The input taken out is : 0
+
+the address of input is : 91
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 81
+mem state : 1
+Current timestamp : 0
+the address of weight is : 56
+The weight taken out is : 0
+the address of weight is : 68
+The weight taken out is : 5
+the address of weight is : 80
+The weight taken out is : 5
+the address of weight is : 92
+The weight taken out is : 4
+
+the address of input is : 56
+The input taken out is : 0
+
+the address of input is : 68
+The input taken out is : 1
+
+the address of input is : 80
+The input taken out is : 7
+
+the address of input is : 92
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 82
+mem state : 1
+Current timestamp : 0
+the address of weight is : 57
+The weight taken out is : 1
+the address of weight is : 69
+The weight taken out is : 7
+the address of weight is : 81
+The weight taken out is : 6
+the address of weight is : 93
+The weight taken out is : 2
+
+the address of input is : 57
+The input taken out is : 0
+
+the address of input is : 69
+The input taken out is : 1
+
+the address of input is : 81
+The input taken out is : 2
+
+the address of input is : 93
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 83
+mem state : 1
+Current timestamp : 0
+the address of weight is : 58
+The weight taken out is : 1
+the address of weight is : 70
+The weight taken out is : 3
+the address of weight is : 82
+The weight taken out is : 3
+the address of weight is : 94
+The weight taken out is : 4
+
+the address of input is : 58
+The input taken out is : 0
+
+the address of input is : 70
+The input taken out is : 0
+
+the address of input is : 82
+The input taken out is : 4
+
+the address of input is : 94
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 84
+mem state : 1
+Current timestamp : 0
+the address of weight is : 59
+The weight taken out is : 2
+the address of weight is : 71
+The weight taken out is : 6
+the address of weight is : 83
+The weight taken out is : 1
+the address of weight is : 95
+The weight taken out is : 4
+
+the address of input is : 59
+The input taken out is : 1
+
+the address of input is : 71
+The input taken out is : 1
+
+the address of input is : 83
+The input taken out is : 3
+
+the address of input is : 95
+The input taken out is : 4
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 85
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 86
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 87
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 88
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 61
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 89
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 62
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 63
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 1
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 90
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 64
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 65
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 66
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 91
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 67
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 68
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 69
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 70
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 71
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 0
+the num is 13
+pooling
+the add result is 4
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 92
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 72
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 73
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 74
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 93
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 75
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 76
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 77
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 78
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 4
+
+cycle : 94
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 79
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 95
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 80
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 96
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 97
+mem state : 1
+Current timestamp : 0
+the address of weight is : 0
+The weight taken out is : 7
+the address of weight is : 12
+The weight taken out is : 3
+the address of weight is : 24
+The weight taken out is : 3
+the address of weight is : 36
+The weight taken out is : 4
+
+the address of input is : 96
+The input taken out is : 4
+
+the address of input is : 108
+The input taken out is : 2
+
+the address of input is : 120
+The input taken out is : 1
+
+the address of input is : 132
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 98
+mem state : 1
+Current timestamp : 0
+the address of weight is : 1
+The weight taken out is : 2
+the address of weight is : 13
+The weight taken out is : 2
+the address of weight is : 25
+The weight taken out is : 3
+the address of weight is : 37
+The weight taken out is : 5
+
+the address of input is : 97
+The input taken out is : 4
+
+the address of input is : 109
+The input taken out is : 3
+
+the address of input is : 121
+The input taken out is : 1
+
+the address of input is : 133
+The input taken out is : 5
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 99
+mem state : 1
+Current timestamp : 0
+the address of weight is : 2
+The weight taken out is : 4
+the address of weight is : 14
+The weight taken out is : 7
+the address of weight is : 26
+The weight taken out is : 2
+the address of weight is : 38
+The weight taken out is : 0
+
+the address of input is : 98
+The input taken out is : 0
+
+the address of input is : 110
+The input taken out is : 1
+
+the address of input is : 122
+The input taken out is : 1
+
+the address of input is : 134
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 100
+mem state : 1
+Current timestamp : 0
+the address of weight is : 3
+The weight taken out is : 3
+the address of weight is : 15
+The weight taken out is : 4
+the address of weight is : 27
+The weight taken out is : 2
+the address of weight is : 39
+The weight taken out is : 6
+
+the address of input is : 99
+The input taken out is : 3
+
+the address of input is : 111
+The input taken out is : 1
+
+the address of input is : 123
+The input taken out is : 4
+
+the address of input is : 135
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 101
+mem state : 1
+Current timestamp : 0
+the address of weight is : 4
+The weight taken out is : 6
+the address of weight is : 16
+The weight taken out is : 4
+the address of weight is : 28
+The weight taken out is : 2
+the address of weight is : 40
+The weight taken out is : 1
+
+the address of input is : 100
+The input taken out is : 4
+
+the address of input is : 112
+The input taken out is : 6
+
+the address of input is : 124
+The input taken out is : 3
+
+the address of input is : 136
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 102
+mem state : 1
+Current timestamp : 0
+the address of weight is : 5
+The weight taken out is : 7
+the address of weight is : 17
+The weight taken out is : 4
+the address of weight is : 29
+The weight taken out is : 3
+the address of weight is : 41
+The weight taken out is : 1
+
+the address of input is : 101
+The input taken out is : 2
+
+the address of input is : 113
+The input taken out is : 5
+
+the address of input is : 125
+The input taken out is : 0
+
+the address of input is : 137
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 103
+mem state : 1
+Current timestamp : 0
+the address of weight is : 6
+The weight taken out is : 0
+the address of weight is : 18
+The weight taken out is : 0
+the address of weight is : 30
+The weight taken out is : 1
+the address of weight is : 42
+The weight taken out is : 1
+
+the address of input is : 102
+The input taken out is : 2
+
+the address of input is : 114
+The input taken out is : 4
+
+the address of input is : 126
+The input taken out is : 1
+
+the address of input is : 138
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 104
+mem state : 1
+Current timestamp : 0
+the address of weight is : 7
+The weight taken out is : 4
+the address of weight is : 19
+The weight taken out is : 3
+the address of weight is : 31
+The weight taken out is : 1
+the address of weight is : 43
+The weight taken out is : 4
+
+the address of input is : 103
+The input taken out is : 6
+
+the address of input is : 115
+The input taken out is : 4
+
+the address of input is : 127
+The input taken out is : 7
+
+the address of input is : 139
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 105
+mem state : 1
+Current timestamp : 0
+the address of weight is : 8
+The weight taken out is : 2
+the address of weight is : 20
+The weight taken out is : 4
+the address of weight is : 32
+The weight taken out is : 6
+the address of weight is : 44
+The weight taken out is : 3
+
+the address of input is : 104
+The input taken out is : 3
+
+the address of input is : 116
+The input taken out is : 4
+
+the address of input is : 128
+The input taken out is : 5
+
+the address of input is : 140
+The input taken out is : 5
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 106
+mem state : 1
+Current timestamp : 0
+the address of weight is : 9
+The weight taken out is : 4
+the address of weight is : 21
+The weight taken out is : 2
+the address of weight is : 33
+The weight taken out is : 5
+the address of weight is : 45
+The weight taken out is : 0
+
+the address of input is : 105
+The input taken out is : 3
+
+the address of input is : 117
+The input taken out is : 5
+
+the address of input is : 129
+The input taken out is : 1
+
+the address of input is : 141
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 107
+mem state : 1
+Current timestamp : 0
+the address of weight is : 10
+The weight taken out is : 0
+the address of weight is : 22
+The weight taken out is : 2
+the address of weight is : 34
+The weight taken out is : 4
+the address of weight is : 46
+The weight taken out is : 1
+
+the address of input is : 106
+The input taken out is : 2
+
+the address of input is : 118
+The input taken out is : 0
+
+the address of input is : 130
+The input taken out is : 3
+
+the address of input is : 142
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 108
+mem state : 1
+Current timestamp : 0
+the address of weight is : 11
+The weight taken out is : 3
+the address of weight is : 23
+The weight taken out is : 6
+the address of weight is : 35
+The weight taken out is : 4
+the address of weight is : 47
+The weight taken out is : 7
+
+the address of input is : 107
+The input taken out is : 2
+
+the address of input is : 119
+The input taken out is : 6
+
+the address of input is : 131
+The input taken out is : 1
+
+the address of input is : 143
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 109
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 110
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 111
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 112
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 81
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 113
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 82
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 83
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 4
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 114
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 84
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 85
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 86
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 115
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 87
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 88
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 89
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 90
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 91
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 4
+the num is 13
+pooling
+the add result is 4
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 116
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 92
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 93
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 94
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 117
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 95
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 96
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 97
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 98
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 4
+
+cycle : 118
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 99
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 119
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 100
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 120
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 121
+mem state : 1
+Current timestamp : 0
+the address of weight is : 48
+The weight taken out is : 5
+the address of weight is : 60
+The weight taken out is : 5
+the address of weight is : 72
+The weight taken out is : 0
+the address of weight is : 84
+The weight taken out is : 3
+
+the address of input is : 96
+The input taken out is : 4
+
+the address of input is : 108
+The input taken out is : 2
+
+the address of input is : 120
+The input taken out is : 1
+
+the address of input is : 132
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 122
+mem state : 1
+Current timestamp : 0
+the address of weight is : 49
+The weight taken out is : 1
+the address of weight is : 61
+The weight taken out is : 2
+the address of weight is : 73
+The weight taken out is : 4
+the address of weight is : 85
+The weight taken out is : 3
+
+the address of input is : 97
+The input taken out is : 4
+
+the address of input is : 109
+The input taken out is : 3
+
+the address of input is : 121
+The input taken out is : 1
+
+the address of input is : 133
+The input taken out is : 5
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 123
+mem state : 1
+Current timestamp : 0
+the address of weight is : 50
+The weight taken out is : 3
+the address of weight is : 62
+The weight taken out is : 3
+the address of weight is : 74
+The weight taken out is : 3
+the address of weight is : 86
+The weight taken out is : 0
+
+the address of input is : 98
+The input taken out is : 0
+
+the address of input is : 110
+The input taken out is : 1
+
+the address of input is : 122
+The input taken out is : 1
+
+the address of input is : 134
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 124
+mem state : 1
+Current timestamp : 0
+the address of weight is : 51
+The weight taken out is : 1
+the address of weight is : 63
+The weight taken out is : 3
+the address of weight is : 75
+The weight taken out is : 4
+the address of weight is : 87
+The weight taken out is : 4
+
+the address of input is : 99
+The input taken out is : 3
+
+the address of input is : 111
+The input taken out is : 1
+
+the address of input is : 123
+The input taken out is : 4
+
+the address of input is : 135
+The input taken out is : 7
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 125
+mem state : 1
+Current timestamp : 0
+the address of weight is : 52
+The weight taken out is : 3
+the address of weight is : 64
+The weight taken out is : 0
+the address of weight is : 76
+The weight taken out is : 5
+the address of weight is : 88
+The weight taken out is : 4
+
+the address of input is : 100
+The input taken out is : 4
+
+the address of input is : 112
+The input taken out is : 6
+
+the address of input is : 124
+The input taken out is : 3
+
+the address of input is : 136
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 126
+mem state : 1
+Current timestamp : 0
+the address of weight is : 53
+The weight taken out is : 5
+the address of weight is : 65
+The weight taken out is : 0
+the address of weight is : 77
+The weight taken out is : 4
+the address of weight is : 89
+The weight taken out is : 1
+
+the address of input is : 101
+The input taken out is : 2
+
+the address of input is : 113
+The input taken out is : 5
+
+the address of input is : 125
+The input taken out is : 0
+
+the address of input is : 137
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 127
+mem state : 1
+Current timestamp : 0
+the address of weight is : 54
+The weight taken out is : 7
+the address of weight is : 66
+The weight taken out is : 7
+the address of weight is : 78
+The weight taken out is : 3
+the address of weight is : 90
+The weight taken out is : 6
+
+the address of input is : 102
+The input taken out is : 2
+
+the address of input is : 114
+The input taken out is : 4
+
+the address of input is : 126
+The input taken out is : 1
+
+the address of input is : 138
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 128
+mem state : 1
+Current timestamp : 0
+the address of weight is : 55
+The weight taken out is : 7
+the address of weight is : 67
+The weight taken out is : 4
+the address of weight is : 79
+The weight taken out is : 2
+the address of weight is : 91
+The weight taken out is : 1
+
+the address of input is : 103
+The input taken out is : 6
+
+the address of input is : 115
+The input taken out is : 4
+
+the address of input is : 127
+The input taken out is : 7
+
+the address of input is : 139
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 129
+mem state : 1
+Current timestamp : 0
+the address of weight is : 56
+The weight taken out is : 0
+the address of weight is : 68
+The weight taken out is : 5
+the address of weight is : 80
+The weight taken out is : 5
+the address of weight is : 92
+The weight taken out is : 4
+
+the address of input is : 104
+The input taken out is : 3
+
+the address of input is : 116
+The input taken out is : 4
+
+the address of input is : 128
+The input taken out is : 5
+
+the address of input is : 140
+The input taken out is : 5
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 130
+mem state : 1
+Current timestamp : 0
+the address of weight is : 57
+The weight taken out is : 1
+the address of weight is : 69
+The weight taken out is : 7
+the address of weight is : 81
+The weight taken out is : 6
+the address of weight is : 93
+The weight taken out is : 2
+
+the address of input is : 105
+The input taken out is : 3
+
+the address of input is : 117
+The input taken out is : 5
+
+the address of input is : 129
+The input taken out is : 1
+
+the address of input is : 141
+The input taken out is : 2
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 131
+mem state : 1
+Current timestamp : 0
+the address of weight is : 58
+The weight taken out is : 1
+the address of weight is : 70
+The weight taken out is : 3
+the address of weight is : 82
+The weight taken out is : 3
+the address of weight is : 94
+The weight taken out is : 4
+
+the address of input is : 106
+The input taken out is : 2
+
+the address of input is : 118
+The input taken out is : 0
+
+the address of input is : 130
+The input taken out is : 3
+
+the address of input is : 142
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 132
+mem state : 1
+Current timestamp : 0
+the address of weight is : 59
+The weight taken out is : 2
+the address of weight is : 71
+The weight taken out is : 6
+the address of weight is : 83
+The weight taken out is : 1
+the address of weight is : 95
+The weight taken out is : 4
+
+the address of input is : 107
+The input taken out is : 2
+
+the address of input is : 119
+The input taken out is : 6
+
+the address of input is : 131
+The input taken out is : 1
+
+the address of input is : 143
+The input taken out is : 3
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 133
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 134
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 135
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 136
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 101
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 137
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 102
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 103
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 4
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 138
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 104
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 105
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 106
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 139
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 107
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 108
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 109
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 110
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 111
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 4
+the num is 13
+pooling
+the add result is 4
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 140
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 112
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 113
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 114
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 141
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 115
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 116
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 117
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 118
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 4
+
+cycle : 142
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 119
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 143
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 120
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 144
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 145
+mem state : 1
+Current timestamp : 0
+the address of weight is : 0
+The weight taken out is : 7
+the address of weight is : 12
+The weight taken out is : 3
+the address of weight is : 24
+The weight taken out is : 3
+the address of weight is : 36
+The weight taken out is : 4
+
+the address of input is : 144
+The input taken out is : 0
+
+the address of input is : 156
+The input taken out is : 5
+
+the address of input is : 168
+The input taken out is : 4
+
+the address of input is : 180
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 146
+mem state : 1
+Current timestamp : 0
+the address of weight is : 1
+The weight taken out is : 2
+the address of weight is : 13
+The weight taken out is : 2
+the address of weight is : 25
+The weight taken out is : 3
+the address of weight is : 37
+The weight taken out is : 5
+
+the address of input is : 145
+The input taken out is : 0
+
+the address of input is : 157
+The input taken out is : 4
+
+the address of input is : 169
+The input taken out is : 1
+
+the address of input is : 181
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 147
+mem state : 1
+Current timestamp : 0
+the address of weight is : 2
+The weight taken out is : 4
+the address of weight is : 14
+The weight taken out is : 7
+the address of weight is : 26
+The weight taken out is : 2
+the address of weight is : 38
+The weight taken out is : 0
+
+the address of input is : 146
+The input taken out is : 7
+
+the address of input is : 158
+The input taken out is : 3
+
+the address of input is : 170
+The input taken out is : 6
+
+the address of input is : 182
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 148
+mem state : 1
+Current timestamp : 0
+the address of weight is : 3
+The weight taken out is : 3
+the address of weight is : 15
+The weight taken out is : 4
+the address of weight is : 27
+The weight taken out is : 2
+the address of weight is : 39
+The weight taken out is : 6
+
+the address of input is : 147
+The input taken out is : 4
+
+the address of input is : 159
+The input taken out is : 2
+
+the address of input is : 171
+The input taken out is : 1
+
+the address of input is : 183
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 149
+mem state : 1
+Current timestamp : 0
+the address of weight is : 4
+The weight taken out is : 6
+the address of weight is : 16
+The weight taken out is : 4
+the address of weight is : 28
+The weight taken out is : 2
+the address of weight is : 40
+The weight taken out is : 1
+
+the address of input is : 148
+The input taken out is : 5
+
+the address of input is : 160
+The input taken out is : 5
+
+the address of input is : 172
+The input taken out is : 4
+
+the address of input is : 184
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 150
+mem state : 1
+Current timestamp : 0
+the address of weight is : 5
+The weight taken out is : 7
+the address of weight is : 17
+The weight taken out is : 4
+the address of weight is : 29
+The weight taken out is : 3
+the address of weight is : 41
+The weight taken out is : 1
+
+the address of input is : 149
+The input taken out is : 7
+
+the address of input is : 161
+The input taken out is : 6
+
+the address of input is : 173
+The input taken out is : 2
+
+the address of input is : 185
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 151
+mem state : 1
+Current timestamp : 0
+the address of weight is : 6
+The weight taken out is : 0
+the address of weight is : 18
+The weight taken out is : 0
+the address of weight is : 30
+The weight taken out is : 1
+the address of weight is : 42
+The weight taken out is : 1
+
+the address of input is : 150
+The input taken out is : 3
+
+the address of input is : 162
+The input taken out is : 3
+
+the address of input is : 174
+The input taken out is : 4
+
+the address of input is : 186
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 152
+mem state : 1
+Current timestamp : 0
+the address of weight is : 7
+The weight taken out is : 4
+the address of weight is : 19
+The weight taken out is : 3
+the address of weight is : 31
+The weight taken out is : 1
+the address of weight is : 43
+The weight taken out is : 4
+
+the address of input is : 151
+The input taken out is : 6
+
+the address of input is : 163
+The input taken out is : 1
+
+the address of input is : 175
+The input taken out is : 4
+
+the address of input is : 187
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 153
+mem state : 1
+Current timestamp : 0
+the address of weight is : 8
+The weight taken out is : 2
+the address of weight is : 20
+The weight taken out is : 4
+the address of weight is : 32
+The weight taken out is : 6
+the address of weight is : 44
+The weight taken out is : 3
+
+the address of input is : 152
+The input taken out is : 0
+
+the address of input is : 164
+The input taken out is : 3
+
+the address of input is : 176
+The input taken out is : 0
+
+the address of input is : 188
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 154
+mem state : 1
+Current timestamp : 0
+the address of weight is : 9
+The weight taken out is : 4
+the address of weight is : 21
+The weight taken out is : 2
+the address of weight is : 33
+The weight taken out is : 5
+the address of weight is : 45
+The weight taken out is : 0
+
+the address of input is : 153
+The input taken out is : 4
+
+the address of input is : 165
+The input taken out is : 3
+
+the address of input is : 177
+The input taken out is : 0
+
+the address of input is : 189
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 155
+mem state : 1
+Current timestamp : 0
+the address of weight is : 10
+The weight taken out is : 0
+the address of weight is : 22
+The weight taken out is : 2
+the address of weight is : 34
+The weight taken out is : 4
+the address of weight is : 46
+The weight taken out is : 1
+
+the address of input is : 154
+The input taken out is : 3
+
+the address of input is : 166
+The input taken out is : 0
+
+the address of input is : 178
+The input taken out is : 145
+
+the address of input is : 190
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 156
+mem state : 1
+Current timestamp : 0
+the address of weight is : 11
+The weight taken out is : 3
+the address of weight is : 23
+The weight taken out is : 6
+the address of weight is : 35
+The weight taken out is : 4
+the address of weight is : 47
+The weight taken out is : 7
+
+the address of input is : 155
+The input taken out is : 4
+
+the address of input is : 167
+The input taken out is : 4
+
+the address of input is : 179
+The input taken out is : 0
+
+the address of input is : 191
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 157
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 158
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 159
+mem state : 2
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 160
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 121
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 161
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 122
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 123
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 4
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 162
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 124
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 125
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 126
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 163
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 127
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 128
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 129
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 130
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 131
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 4
+the num is 13
+pooling
+the add result is 2
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 164
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 132
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 133
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 134
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 165
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 135
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 136
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 137
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 138
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 2
+
+cycle : 166
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 139
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 167
+mem state : 2
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 140
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 168
+mem state : 0
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 169
+mem state : 1
+Current timestamp : 0
+the address of weight is : 48
+The weight taken out is : 5
+the address of weight is : 60
+The weight taken out is : 5
+the address of weight is : 72
+The weight taken out is : 0
+the address of weight is : 84
+The weight taken out is : 3
+
+the address of input is : 144
+The input taken out is : 0
+
+the address of input is : 156
+The input taken out is : 5
+
+the address of input is : 168
+The input taken out is : 4
+
+the address of input is : 180
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 170
+mem state : 1
+Current timestamp : 0
+the address of weight is : 49
+The weight taken out is : 1
+the address of weight is : 61
+The weight taken out is : 2
+the address of weight is : 73
+The weight taken out is : 4
+the address of weight is : 85
+The weight taken out is : 3
+
+the address of input is : 145
+The input taken out is : 0
+
+the address of input is : 157
+The input taken out is : 4
+
+the address of input is : 169
+The input taken out is : 1
+
+the address of input is : 181
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 171
+mem state : 1
+Current timestamp : 0
+the address of weight is : 50
+The weight taken out is : 3
+the address of weight is : 62
+The weight taken out is : 3
+the address of weight is : 74
+The weight taken out is : 3
+the address of weight is : 86
+The weight taken out is : 0
+
+the address of input is : 146
+The input taken out is : 7
+
+the address of input is : 158
+The input taken out is : 3
+
+the address of input is : 170
+The input taken out is : 6
+
+the address of input is : 182
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 172
+mem state : 1
+Current timestamp : 0
+the address of weight is : 51
+The weight taken out is : 1
+the address of weight is : 63
+The weight taken out is : 3
+the address of weight is : 75
+The weight taken out is : 4
+the address of weight is : 87
+The weight taken out is : 4
+
+the address of input is : 147
+The input taken out is : 4
+
+the address of input is : 159
+The input taken out is : 2
+
+the address of input is : 171
+The input taken out is : 1
+
+the address of input is : 183
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 173
+mem state : 1
+Current timestamp : 0
+the address of weight is : 52
+The weight taken out is : 3
+the address of weight is : 64
+The weight taken out is : 0
+the address of weight is : 76
+The weight taken out is : 5
+the address of weight is : 88
+The weight taken out is : 4
+
+the address of input is : 148
+The input taken out is : 5
+
+the address of input is : 160
+The input taken out is : 5
+
+the address of input is : 172
+The input taken out is : 4
+
+the address of input is : 184
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 174
+mem state : 1
+Current timestamp : 0
+the address of weight is : 53
+The weight taken out is : 5
+the address of weight is : 65
+The weight taken out is : 0
+the address of weight is : 77
+The weight taken out is : 4
+the address of weight is : 89
+The weight taken out is : 1
+
+the address of input is : 149
+The input taken out is : 7
+
+the address of input is : 161
+The input taken out is : 6
+
+the address of input is : 173
+The input taken out is : 2
+
+the address of input is : 185
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 175
+mem state : 1
+Current timestamp : 0
+the address of weight is : 54
+The weight taken out is : 7
+the address of weight is : 66
+The weight taken out is : 7
+the address of weight is : 78
+The weight taken out is : 3
+the address of weight is : 90
+The weight taken out is : 6
+
+the address of input is : 150
+The input taken out is : 3
+
+the address of input is : 162
+The input taken out is : 3
+
+the address of input is : 174
+The input taken out is : 4
+
+the address of input is : 186
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 176
+mem state : 1
+Current timestamp : 0
+the address of weight is : 55
+The weight taken out is : 7
+the address of weight is : 67
+The weight taken out is : 4
+the address of weight is : 79
+The weight taken out is : 2
+the address of weight is : 91
+The weight taken out is : 1
+
+the address of input is : 151
+The input taken out is : 6
+
+the address of input is : 163
+The input taken out is : 1
+
+the address of input is : 175
+The input taken out is : 4
+
+the address of input is : 187
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 177
+mem state : 1
+Current timestamp : 0
+the address of weight is : 56
+The weight taken out is : 0
+the address of weight is : 68
+The weight taken out is : 5
+the address of weight is : 80
+The weight taken out is : 5
+the address of weight is : 92
+The weight taken out is : 4
+
+the address of input is : 152
+The input taken out is : 0
+
+the address of input is : 164
+The input taken out is : 3
+
+the address of input is : 176
+The input taken out is : 0
+
+the address of input is : 188
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 178
+mem state : 1
+Current timestamp : 0
+the address of weight is : 57
+The weight taken out is : 1
+the address of weight is : 69
+The weight taken out is : 7
+the address of weight is : 81
+The weight taken out is : 6
+the address of weight is : 93
+The weight taken out is : 2
+
+the address of input is : 153
+The input taken out is : 4
+
+the address of input is : 165
+The input taken out is : 3
+
+the address of input is : 177
+The input taken out is : 0
+
+the address of input is : 189
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 179
+mem state : 1
+Current timestamp : 0
+the address of weight is : 58
+The weight taken out is : 1
+the address of weight is : 70
+The weight taken out is : 3
+the address of weight is : 82
+The weight taken out is : 3
+the address of weight is : 94
+The weight taken out is : 4
+
+the address of input is : 154
+The input taken out is : 3
+
+the address of input is : 166
+The input taken out is : 0
+
+the address of input is : 178
+The input taken out is : 145
+
+the address of input is : 190
+The input taken out is : 1
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 180
+mem state : 1
+Current timestamp : 0
+the address of weight is : 59
+The weight taken out is : 2
+the address of weight is : 71
+The weight taken out is : 6
+the address of weight is : 83
+The weight taken out is : 1
+the address of weight is : 95
+The weight taken out is : 4
+
+the address of input is : 155
+The input taken out is : 4
+
+the address of input is : 167
+The input taken out is : 4
+
+the address of input is : 179
+The input taken out is : 0
+
+the address of input is : 191
+The input taken out is : 0
+
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 181
+mem state : 3
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 182
+mem state : 3
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 183
+mem state : 3
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 184
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 141
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 185
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 2
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 142
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 143
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+pooling
+the add result is 4
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 186
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 144
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 145
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 146
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 187
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 5
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 147
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 148
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 149
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 150
+ i : 4
+The total number of outputs required : 160
+Current number of outputs : 151
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+pooling
+the add result is 4
+the num is 13
+pooling
+the add result is 2
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 188
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 3
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 152
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 153
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 154
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+Push a Vth into the output_fifo
+Push a result into the output_pool_fifo (pooling)
+
+cycle : 189
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 4
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 155
+ i : 1
+The total number of outputs required : 160
+Current number of outputs : 156
+ i : 2
+The total number of outputs required : 160
+Current number of outputs : 157
+ i : 3
+The total number of outputs required : 160
+Current number of outputs : 158
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+pooling
+the add result is 2
+
+cycle : 190
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 159
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+cycle : 191
+mem state : 3
+the length of write_fifo(OSMeshSDMemory.cpp) : 1
+ i : 0
+The total number of outputs required : 160
+Current number of outputs : 160
+calling the compute()
+this->row_used is 4
+this->col_used is4
+the num is 5
+Not enough spike data
+the num is 7
+Not enough spike data
+the num is 13
+Not enough spike data
+the num is 15
+Not enough spike data
+
+ ============================ End simulation ====================================
+
+Number of cycles running: 192
+Time mem: 0
+Time lt: 0
+Time pooling: 0
+Time update: 0
+Time as: 0
+Time ms: 0
+Time ds: 0
+ERROR position 6: Value ofmap simulator: 1. Value ofmap CPU: 0
+[1;31mT test not passed[0m

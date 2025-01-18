@@ -41,6 +41,9 @@ ReduceNetwork_t get_type_reduce_network_type(std::string reduce_network_type);
 
 MemoryController_t get_type_memory_controller_type(std::string memory_controller_type);
 
+//add
+pooling_t get_type_pooling_type(std::string pooling_type);
+
 std::string get_string_memory_controller_type(MemoryController_t memory_controller_type);
 
 std::string get_string_multiplier_network_type(MultiplierNetwork_t multiplier_network_type);

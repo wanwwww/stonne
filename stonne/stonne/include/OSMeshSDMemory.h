@@ -15,12 +15,22 @@
 #include "MultiplierNetwork.h"
 #include "ReduceNetwork.h"
 
+#include "PoolingNetwork.h"
+
+// #include "NeuronStateUpdater.h"
+
+class NeuronStateUpdater; // 前向声明
 
 class OSMeshSDMemory : public MemoryController {
 private:
     DNNLayer* dnn_layer; // Layer loaded in the accelerator
     ReduceNetwork* reduce_network; //Reduce network used to be reconfigured
     MultiplierNetwork* multiplier_network; //Multiplier network used to be reconfigured
+
+    //add
+    NeuronStateUpdater* update_network; // 膜电位更新网络
+    PoolingNetwork* pooling_network;
+    bool pooling_enabled; // 池化使能信号 
 
     unsigned int M;
     unsigned int N;
@@ -63,6 +73,8 @@ private:
     address_t KN_address;
     address_t output_address;
 
+    address_t neuron_state;
+
 
 
     //Tile parameters
@@ -72,11 +84,15 @@ private:
     unsigned int iter_N;  // （this->iter_N = N / T_N + ((N % T_N)!=0);）
     unsigned int iter_K;  
     unsigned int iter_M;
+
+    unsigned int iter_Timestamp;
     
     //Current parameters  
     unsigned int current_M;
     unsigned int current_N;
     unsigned int current_K;    
+
+    unsigned int current_Timestamp;  // 用于分发数据  add 
     
 
     //Signals
@@ -90,6 +106,14 @@ private:
 
    unsigned int current_output;
    unsigned int output_size; // M*N
+
+   unsigned int current_progress; // 进度 add 
+   unsigned int n_timestamp_completed;  // add
+   // add
+   unsigned int all_timestamp_required_output;  // 所有时间步需要写入内存多少次
+   unsigned int one_timestamp_required_output;  // 一个时间步需要写入内存多少次
+   unsigned int one_PE_requierd_output; // 一个PE阵列需要写入内存多少次 
+
 
    unsigned int current_output_iteration;
    unsigned int n_iterations_completed;
@@ -111,7 +135,7 @@ public:
     //OSMeshControllerState current_state; //Stage to control what to do according to the state
     OSMeshSDMemory(id_t id, std::string name, Config stonne_cfg, Connection* write_connection);
     ~OSMeshSDMemory();
-    void setLayer(DNNLayer* dnn_layer,  address_t KN_address, address_t MK_address, address_t output_address, Dataflow dataflow);
+    void setLayer(DNNLayer* dnn_layer,  address_t KN_address, address_t MK_address, address_t output_address, address_t neuron_state, Dataflow dataflow);
     void setTile(Tile* current_tile);
     void setReadConnections(std::vector<Connection*> read_connections);
     void setWriteConnections(std::vector<Connection*> write_port_connections); //All the write connections must be set at a time
@@ -127,8 +151,24 @@ public:
     void setReduceNetwork(ReduceNetwork* reduce_network) {this->reduce_network=reduce_network;}
     //Used to configure the MultiplierNetwork according to the controller
     void setMultiplierNetwork(MultiplierNetwork* multiplier_network) {this->multiplier_network = multiplier_network;}
+
+    // add
+    void setUpdateNetwork(NeuronStateUpdater* update_network) {this->update_network = update_network; }
+    void setPoolingNetwork(PoolingNetwork* pooling_network) {this->pooling_network = pooling_network; }
+
     void printStats(std::ofstream& out, unsigned int indent);
     void printEnergy(std::ofstream& out, unsigned int indent);
+
+    // add
+    unsigned int getN_iterations_completed() {return this->n_iterations_completed;}
+    unsigned int getIter_N() {return this->iter_N;}
+    unsigned int getT_M() {return this->T_M;}
+    unsigned int getT_N() {return this->T_N;}
+    unsigned int getCols_used() {return this->cols_used;}
+    unsigned int getN() {return this->N;}
+
+    int get_Vth(unsigned int addr) {return this->neuron_state[addr];}
+
 };
 
 

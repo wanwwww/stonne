@@ -16,18 +16,28 @@
 #include "cpptoml.h"
 
 Stonne::Stonne(Config stonne_cfg) {
+    //std::cout<<"Instantiate stonne "<<std::endl;
     this->stonne_cfg=stonne_cfg;
-    this->ms_size = stonne_cfg.m_MSNetworkCfg.ms_size;
+    this->ms_size = stonne_cfg.m_MSNetworkCfg.ms_size; 
+    //std::cout<<"the ms_size is : "<<this->ms_size<<std::endl;
+
+    //std::cout<<"1"<<std::endl;
     // std::cout<<std::endl;
     // std::cout<<"ms_size(STONNEModel.cpp) : "<<stonne_cfg.m_MSNetworkCfg.ms_size <<std::endl;
     // std::cout<<std::endl;
     this->layer_loaded=false;
     this->tile_loaded=false;
     // 连接带宽的大小在这里没有影响
+    //std::cout<<"2"<<std::endl;
     this->outputASConnection = new Connection(stonne_cfg.m_LookUpTableCfg.port_width);  // 16
     //std::cout<<"outputASConnection wb : "<<stonne_cfg.m_SDMemoryCfg.port_width<<std::endl;
     this->outputLTConnection = new Connection(stonne_cfg.m_SDMemoryCfg.port_width);  // 1
     //std::cout<<"outputLTConnection wb : "<<stonne_cfg.m_LookUpTableCfg.port_width<<std::endl;
+
+    this->pooling_enabled = (stonne_cfg.layer_type==GEMM || stonne_cfg.layer_type==CONV);
+    //std::cout<<"pooling_enabled : "<<pooling_enabled<<std::endl;
+
+    //std::cout<<"3"<<std::endl;
 
     // 乘法器网络类型 
     switch(stonne_cfg.m_MSNetworkCfg.multiplier_network_type) {
@@ -66,40 +76,68 @@ Stonne::Stonne(Config stonne_cfg) {
     this->lt = new LookupTable(5, "LookUpTable", stonne_cfg, outputASConnection, outputLTConnection);
 
     // 内存控制器类型
-    //switch(MemoryController). It is possible to create instances of other MemoryControllers
-    switch(stonne_cfg.m_SDMemoryCfg.mem_controller_type) {
-	case SIGMA_SPARSE_GEMM:
-            this->mem = new SparseSDMemory(0, "SparseSDMemory", stonne_cfg, this->outputLTConnection);
-	    break;
-	case MAERI_DENSE_WORKLOAD:
-	    this->mem = new  SDMemory(0, "SDMemory", stonne_cfg, this->outputLTConnection);
-	    break;
-	case MAGMA_SPARSE_DENSE:
-            this->mem = new  SparseDenseSDMemory(0, "SparseDenseSDMemory", stonne_cfg, this->outputLTConnection);
-            break;
-	case TPU_OS_DENSE:
-	    this->mem = new  OSMeshSDMemory(0, "OSMeshSDMemory", stonne_cfg, this->outputLTConnection);
-	    break;
-	default:
-	    assert(false);
-    }
+    this->mem = new OSMeshSDMemory(0, "OSMeshSDMemory", stonne_cfg, this->outputLTConnection);
+    // //switch(MemoryController). It is possible to create instances of other MemoryControllers
+    // switch(stonne_cfg.m_SDMemoryCfg.mem_controller_type) {
+	// case SIGMA_SPARSE_GEMM:
+    //         this->mem = new SparseSDMemory(0, "SparseSDMemory", stonne_cfg, this->outputLTConnection);
+	//     break;
+	// case MAERI_DENSE_WORKLOAD:
+	//     this->mem = new  SDMemory(0, "SDMemory", stonne_cfg, this->outputLTConnection);
+	//     break;
+	// case MAGMA_SPARSE_DENSE:
+    //         this->mem = new  SparseDenseSDMemory(0, "SparseDenseSDMemory", stonne_cfg, this->outputLTConnection);
+    //         break;
+	// case TPU_OS_DENSE:
+	//     this->mem = new  OSMeshSDMemory(0, "OSMeshSDMemory", stonne_cfg, this->outputLTConnection);
+	//     break;
+	// default:
+	//     assert(false);
+    // }
+
+    // add 
+    // 实例化膜电位更新网络
+    this->updatenet = new NeuronStateUpdater(6, "NeuronStateUpdater", stonne_cfg);
+    this->poolingnet = new PoolingNetwork(7, "PoolingNetwork", stonne_cfg);
+
+    //std::cout<<"4"<<std::endl;
+
+
+    this->mem->setUpdateNetwork(updatenet);  // add
+    this->mem->setPoolingNetwork(poolingnet);
 
     // 将加法器网络和乘法器网络添加到内存控制器中 
     //Adding to the memory controller the asnet and msnet to reconfigure them if needed
     this->mem->setReduceNetwork(asnet);
     this->mem->setMultiplierNetwork(msnet); 
 
+    this->updatenet->setMemoryController(this->mem); // add
+
     // 计算加法器的个数 
     //Calculating n_adders
     this->n_adders=this->ms_size-1; 
+
+    //std::cout<<"5"<<std::endl;
 
     //rsnet
     this->connectMemoryandDSN(); // 连接内存和分发网络
     this->connectMSNandDSN(); // 连接乘法器网络和分发网络
     this->connectMSNandASN(); // 连接乘法器网络和加法器网络
 
-    this->connectASNandBus(); // 连接加法器网络输出到总线
+    // modify 
+    this->connectASNandUpdateNet(); // 连接归约网络和膜电位更新网络
+    this->connectionUpdateNetandBus(); // 连接更新网络和总线
     this->connectBusandMemory();  // 连接从总线输出到内存 
+
+    //std::cout<<"6"<<std::endl;
+
+    // 如果启用池化模块的话，连接膜电位更新模块和池化模块、连接池化模块和总线
+    if(this->pooling_enabled){
+        //std::cout<<"pooling_enabled"<<std::endl;
+        this->connectUpdateNetandPoolingNet();
+        //std::cout<<"7"<<std::endl;
+        this->connectPoolingNetandBus();
+    }
   
     //DEBUG PARAMETERS
     this->time_ds = 0;
@@ -108,8 +146,14 @@ Stonne::Stonne(Config stonne_cfg) {
     this->time_lt = 0;
     this->time_mem = 0;
 
+    this->time_update = 0;
+    this->time_pooling = 0;
+
+
     //STATISTICS
     this->n_cycles = 0;
+
+    //std::cout<<" stonne instantiation completed "<<std::endl;
 
 }
 
@@ -122,6 +166,10 @@ Stonne::~Stonne() {
     delete this->lt;
     delete this->mem;
     delete this->collectionBus;
+
+    delete this->updatenet;
+    delete this->poolingnet;
+
     if(layer_loaded) {
         delete this->dnn_layer;
     }
@@ -169,21 +217,51 @@ void Stonne::connectMSNandASN() {
 
 // 连接4 ： 连接归约网络和总线 
 // 得到总线的输入连接，将其设置为归约网络的与内存的连接 
-void Stonne::connectASNandBus() { 
-    // 得到每条总线线的多个端口的输入连接（在TPU中每条总线线只对应一个数据端口）
-    std::vector<std::vector<Connection*>> connectionsBus = this->collectionBus->getInputConnections(); //Getting the CollectionBus Connections
-    this->asnet->setMemoryConnections(connectionsBus); //Send the connections to the ReduceNetwork to be connected according to its algorithm
+// void Stonne::connectASNandBus() { 
+//     // 得到每条总线线的多个端口的输入连接（在TPU中每条总线线只对应一个数据端口）
+//     std::vector<std::vector<Connection*>> connectionsBus = this->collectionBus->getInputConnections(); //Getting the CollectionBus Connections
+//     this->asnet->setMemoryConnections(connectionsBus); //Send the connections to the ReduceNetwork to be connected according to its algorithm
+// }
+
+// 连接4 : 连接归约网络和膜电位更新网络
+void Stonne::connectASNandUpdateNet(){
+    std::vector<Connection*> connectionUpdater = this->updatenet->getInputConnections(); // 得到膜电位更新网络的输入连接 
+    this->asnet->setMemoryConnections(connectionUpdater);
 }
 
-// 连接5 ： 连接总线和内存 
+// 连接5 : 连接膜电位更新网络和总线
+void Stonne::connectionUpdateNetandBus(){
+    // 得到总线的输入连接，也就是每条总线线的所对应的输入连接
+    std::vector<std::vector<Connection*>> connectionsBus = this->collectionBus->getInputConnections();
+    // 将其设置为膜电位更新模块的输出连接 
+    this->updatenet->setOutputConnections(connectionsBus);
+}
+
+// 连接 ： 连接总线和内存 
 // 得到每条总线线的输出连接，将其设置为内存的写连接 
 void Stonne::connectBusandMemory() {
     std::vector<Connection*> write_port_connections = this->collectionBus->getOutputConnections();
     this->mem->setWriteConnections(write_port_connections);      
 }
 
+// add
+// 连接膜电位更新模块和池化模块
+void Stonne::connectUpdateNetandPoolingNet(){
+    //std::cout<<"connectUpdateNetandPoolingNet"<<std::endl;
+    std::vector<Connection*> connectionPoolingNet = this->poolingnet->getInputConnections();
+    //std::cout<<"get the poolingnet inputconnections"<<std::endl;
+    this->updatenet->setPoolingconnections(connectionPoolingNet);
+}
+
+// 连接池化模块和总线模块
+void Stonne::connectPoolingNetandBus(){
+    std::vector<std::vector<Connection*>> connectionsBus = this->collectionBus->getInputConnections();
+    this->poolingnet->setOutputConnection(connectionsBus);
+}
+
 // 
-void Stonne::loadDNNLayer(Layer_t layer_type, std::string layer_name, unsigned int R, unsigned int S, unsigned int C, unsigned int K, unsigned int G, unsigned int N, unsigned int X, unsigned int Y, unsigned int strides, address_t input_address, address_t filter_address, address_t output_address, Dataflow dataflow) {
+void Stonne::loadDNNLayer(Layer_t layer_type, std::string layer_name, unsigned int R, unsigned int S, unsigned int C, unsigned int K, unsigned int G, unsigned int N, unsigned int X, unsigned int Y, unsigned int strides, address_t input_address, address_t filter_address, address_t output_address, address_t neuron_state, Dataflow dataflow) {
+    //std::cout<<"calling loadDNNLayer begin"<<std::endl;
     assert((C % G)==0); //G must be multiple of C
     assert((K % G)==0); //G must be multiple of K
     assert(X>=R);
@@ -193,57 +271,57 @@ void Stonne::loadDNNLayer(Layer_t layer_type, std::string layer_name, unsigned i
     } 
     this->dnn_layer = new DNNLayer(layer_type, layer_name, R,S, C, K, G, N, X, Y, strides);   
     this->layer_loaded = true;
-    this->mem->setLayer(this->dnn_layer, input_address, filter_address, output_address, dataflow);
+    this->mem->setLayer(this->dnn_layer, input_address, filter_address, output_address, neuron_state, dataflow);
+    //std::cout<<"calling loadDNNLayer end"<<std::endl;
 }
 
-void Stonne::loadCONVLayer(std::string layer_name, unsigned int R, unsigned int S, unsigned int C, unsigned int K, unsigned int G, unsigned int N, unsigned int X, unsigned int Y, unsigned int strides, address_t input_address, address_t filter_address, address_t output_address) {
-    loadDNNLayer(CONV, layer_name, R, S, C, K, G, N, X, Y, strides, input_address, filter_address, output_address, CNN_DATAFLOW);
-    std::cout << "Loading a convolutional layer into STONNE" << std::endl;
-}
+// void Stonne::loadCONVLayer(std::string layer_name, unsigned int R, unsigned int S, unsigned int C, unsigned int K, unsigned int G, unsigned int N, unsigned int X, unsigned int Y, unsigned int strides, address_t input_address, address_t filter_address, address_t output_address, address_t neuron_state) {
+//     loadDNNLayer(CONV, layer_name, R, S, C, K, G, N, X, Y, strides, input_address, filter_address, output_address, neuron_state, CNN_DATAFLOW);
+//     std::cout << "Loading a convolutional layer into STONNE" << std::endl;
+// }
 
-void Stonne::loadFCLayer(std::string layer_name, unsigned int N, unsigned int S, unsigned int K, address_t input_address, address_t filter_address, address_t output_address)  {
-     //loadDNNLayer(FC, layer_name, 1, S, 1, K, 1, N, 1, S, 1, input_address, filter_address, output_address, CNN_DATAFLOW);
-    loadDNNLayer(FC, layer_name, 1, S, 1, K, 1, 1, N, S, 1, input_address, filter_address, output_address, CNN_DATAFLOW);
-    std::cout << "Loading a FC layer into STONNE" << std::endl;
-}
+// void Stonne::loadFCLayer(std::string layer_name, unsigned int N, unsigned int S, unsigned int K, address_t input_address, address_t filter_address, address_t output_address)  {
+//      //loadDNNLayer(FC, layer_name, 1, S, 1, K, 1, N, 1, S, 1, input_address, filter_address, output_address, CNN_DATAFLOW);
+//     loadDNNLayer(FC, layer_name, 1, S, 1, K, 1, 1, N, S, 1, input_address, filter_address, output_address, CNN_DATAFLOW);
+//     std::cout << "Loading a FC layer into STONNE" << std::endl;
+// }
 
-void Stonne::loadGEMM(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, metadata_address_t MK_metadata, metadata_address_t KN_metadata, address_t output_matrix, metadata_address_t output_metadata, Dataflow dataflow) {
-    //Setting GEMM (from SIGMA) parameters onto CNN parameters:
-    //N=N
-    //S and X in CNN =K in SIGMA
-    //K in CNN = M in SIGMA
-    //input_matrix=KN 
-    //filter_matrix = MK
-    loadDNNLayer(GEMM, layer_name, 1, K, 1, M, 1, 1, N, K, 1, MK_matrix, KN_matrix, output_matrix, dataflow);
-    std::cout << "Loading a GEMM into STONNE" << std::endl;
-    this->mem->setSparseMetadata(MK_metadata, KN_metadata, output_metadata); 
-    std::cout << "Loading metadata" << std::endl;
-}
+// void Stonne::loadGEMM(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, metadata_address_t MK_metadata, metadata_address_t KN_metadata, address_t output_matrix, metadata_address_t output_metadata, Dataflow dataflow) {
+//     //Setting GEMM (from SIGMA) parameters onto CNN parameters:
+//     //N=N
+//     //S and X in CNN =K in SIGMA
+//     //K in CNN = M in SIGMA
+//     //input_matrix=KN 
+//     //filter_matrix = MK
+//     loadDNNLayer(GEMM, layer_name, 1, K, 1, M, 1, 1, N, K, 1, MK_matrix, KN_matrix, output_matrix, dataflow);
+//     std::cout << "Loading a GEMM into STONNE" << std::endl;
+//     this->mem->setSparseMetadata(MK_metadata, KN_metadata, output_metadata); 
+//     std::cout << "Loading metadata" << std::endl;
+// }
 
-void Stonne::loadDenseGEMM(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, address_t output_matrix, Dataflow dataflow) {
+void Stonne::loadDenseGEMM(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, address_t output_matrix, address_t neuron_state, Dataflow dataflow) {
     //Setting GEMM (from SIGMA) parameters onto CNN parameters:
     //input_matrix = MK
     //filter_matrix = KN
-    loadDNNLayer(GEMM, layer_name, 1, K, 1, N, 1, 1, M, K, 1, MK_matrix, KN_matrix, output_matrix, dataflow);
+    loadDNNLayer(GEMM, layer_name, 1, K, 1, N, 1, 1, M, K, 1, MK_matrix, KN_matrix, output_matrix, neuron_state, dataflow);
     std::cout << "Loading a GEMM into STONNE" << std::endl;
 }
 
-void Stonne::loadSparseDense(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, metadata_address_t MK_metadata_id, metadata_address_t MK_metadata_pointer, address_t output_matrix, unsigned int T_N, unsigned int T_K) {
-    //Setting GEMM (from SIGMA) parameters onto CNN parameters:
-    //K in CNN=N here
-    //C in CNN =K here
-    //N in CNN = M here
-    //input_matrix=MK 
-    //filter_matrix = KN
-    loadDNNLayer(SPARSE_DENSE, layer_name, 1, 1, K, N, 1, M, 1, 1, 1, MK_matrix, KN_matrix, output_matrix, SPARSE_DENSE_DATAFLOW);
-    std::cout << "Loading a Sparse multiplied by dense GEMM into STONNE" << std::endl;
-    /////To define in the new class
-    this->mem->setSparseMatrixMetadata(MK_metadata_id, MK_metadata_pointer);
-    std::cout << "Loading metadata" << std::endl;
-
-    /////To define in the new class
-    loadSparseDenseTile(T_N, T_K);
-}
+// void Stonne::loadSparseDense(std::string layer_name, unsigned int N, unsigned int K, unsigned int M, address_t MK_matrix, address_t KN_matrix, metadata_address_t MK_metadata_id, metadata_address_t MK_metadata_pointer, address_t output_matrix, unsigned int T_N, unsigned int T_K) {
+//     //Setting GEMM (from SIGMA) parameters onto CNN parameters:
+//     //K in CNN=N here
+//     //C in CNN =K here
+//     //N in CNN = M here
+//     //input_matrix=MK 
+//     //filter_matrix = KN
+//     loadDNNLayer(SPARSE_DENSE, layer_name, 1, 1, K, N, 1, M, 1, 1, 1, MK_matrix, KN_matrix, output_matrix, SPARSE_DENSE_DATAFLOW);
+//     std::cout << "Loading a Sparse multiplied by dense GEMM into STONNE" << std::endl;
+//     /////To define in the new class
+//     this->mem->setSparseMatrixMetadata(MK_metadata_id, MK_metadata_pointer);
+//     std::cout << "Loading metadata" << std::endl;
+//     /////To define in the new class
+//     loadSparseDenseTile(T_N, T_K);
+// }
 
 //To dense CNNs and GEMMs 
 void Stonne::loadTile(unsigned int T_R, unsigned int T_S, unsigned int T_C, unsigned int T_K, unsigned int T_G, unsigned int T_N, unsigned int T_X_, unsigned int T_Y_) {
@@ -255,7 +333,7 @@ void Stonne::loadTile(unsigned int T_R, unsigned int T_S, unsigned int T_C, unsi
         assert(this->ms_size >= (T_R*T_S*T_C*T_K*T_G*T_N*T_X_*T_Y_)); //There are enough mswitches
     }
     else {
-        // ============================================认为这里可以指考虑输出维度 ???????????????????????????????????????????????????????
+        // ============================================认为这里可以只考虑输出维度 ???????????????????????????????????????????????????????
         assert((this->stonne_cfg.m_MSNetworkCfg.ms_rows*this->stonne_cfg.m_MSNetworkCfg.ms_cols) >= (T_R*T_S*T_C*T_K*T_G*T_N*T_X_*T_Y_));
     }
     //Checking if the dimensions fit the DNN layer. i.e., the tile is able to calculate the whole layer.
@@ -318,225 +396,225 @@ void Stonne::loadGEMMTile(unsigned int T_N, unsigned int T_K, unsigned int T_M) 
     assert(this->layer_loaded && (this->dnn_layer->get_layer_type() == GEMM));   //Force to have the right layer with the GEMM parameters)
 }
 
-void Stonne::loadFCTile(unsigned int T_S, unsigned int T_N, unsigned int T_K)  {
-    //loadTile(1, T_S, 1, T_K, 1, T_N, 1, 1);
-    std::cout << "Loading a FC tile" << std::endl;
-    loadTile(1, T_S, 1, T_K, 1, 1, T_N, 1);
-    assert(this->layer_loaded && (this->dnn_layer->get_layer_type() == FC));   //Force to have the right layer with the FC parameters)
-}
+// void Stonne::loadFCTile(unsigned int T_S, unsigned int T_N, unsigned int T_K)  {
+//     //loadTile(1, T_S, 1, T_K, 1, T_N, 1, 1);
+//     std::cout << "Loading a FC tile" << std::endl;
+//     loadTile(1, T_S, 1, T_K, 1, 1, T_N, 1);
+//     assert(this->layer_loaded && (this->dnn_layer->get_layer_type() == FC));   //Force to have the right layer with the FC parameters)
+// }
 
-void Stonne::loadSparseDenseTile(unsigned int T_N, unsigned int T_K) {
-    std::cout << "Loading SparseDense tile: <T_N=" << T_N << ", T_K=" << T_K << ">" << std::endl;
-    this->mem->setDenseSpatialData(T_N, T_K);
-}
+// void Stonne::loadSparseDenseTile(unsigned int T_N, unsigned int T_K) {
+//     std::cout << "Loading SparseDense tile: <T_N=" << T_N << ", T_K=" << T_K << ">" << std::endl;
+//     this->mem->setDenseSpatialData(T_N, T_K);
+// }
 
 
-void Stonne::loadTile(std::string tile_file) {
-    auto config = cpptoml::parse_file(tile_file); //Creating object to parse
-    auto tile_type=config->get_as<std::string>("tile_type");
-    auto T_R=config->get_as<int32_t>("T_R");
-    auto T_S=config->get_as<int32_t>("T_S");
-    auto T_C=config->get_as<int32_t>("T_C");
-    auto T_K=config->get_as<int32_t>("T_K");
-    auto T_G=config->get_as<int32_t>("T_G");
-    auto T_N=config->get_as<int32_t>("T_N");
-    auto T_X_=config->get_as<int32_t>("T_X'");
-    auto T_Y_=config->get_as<int32_t>("T_Y'");
-    auto tileGeneratorTarget_str=config->get_as<std::string>("generate_tile");
-    auto tileGenerator_str=config->get_as<std::string>("generator");
-    TileGenerator::Target tileGeneratorTarget = TileGenerator::Target::NONE;
-    TileGenerator::Generator tileGenerator = TileGenerator::Generator::CHOOSE_AUTOMATICALLY;
+// void Stonne::loadTile(std::string tile_file) {
+//     auto config = cpptoml::parse_file(tile_file); //Creating object to parse
+//     auto tile_type=config->get_as<std::string>("tile_type");
+//     auto T_R=config->get_as<int32_t>("T_R");
+//     auto T_S=config->get_as<int32_t>("T_S");
+//     auto T_C=config->get_as<int32_t>("T_C");
+//     auto T_K=config->get_as<int32_t>("T_K");
+//     auto T_G=config->get_as<int32_t>("T_G");
+//     auto T_N=config->get_as<int32_t>("T_N");
+//     auto T_X_=config->get_as<int32_t>("T_X'");
+//     auto T_Y_=config->get_as<int32_t>("T_Y'");
+//     auto tileGeneratorTarget_str=config->get_as<std::string>("generate_tile");
+//     auto tileGenerator_str=config->get_as<std::string>("generator");
+//     TileGenerator::Target tileGeneratorTarget = TileGenerator::Target::NONE;
+//     TileGenerator::Generator tileGenerator = TileGenerator::Generator::CHOOSE_AUTOMATICALLY;
 
-    if(!tile_type) {
-        std::cout << "Error to parse tile_type. Parameter not found" << std::endl;
-        exit(1);
-    }
+//     if(!tile_type) {
+//         std::cout << "Error to parse tile_type. Parameter not found" << std::endl;
+//         exit(1);
+//     }
 
-    if(*tile_type=="CONV") { //Actually the architecture does not know about the layer type. This is just to make sure that the user introduces the
-        //appropiate parameters.
-        std::cout << "Reading a tile of type CONV" << std::endl;
-    }
+//     if(*tile_type=="CONV") { //Actually the architecture does not know about the layer type. This is just to make sure that the user introduces the
+//         //appropiate parameters.
+//         std::cout << "Reading a tile of type CONV" << std::endl;
+//     }
 
-    else if(*tile_type=="FC") {
-        std::cout << "Reading a tile of type FC" << std::endl;
-    }
+//     else if(*tile_type=="FC") {
+//         std::cout << "Reading a tile of type FC" << std::endl;
+//     }
 
-    else {
-        std::cout << "Error to parse tile_type. Specify a correct type: [CONV, FC, POOL]" << std::endl;
-        exit(1);
-    }
+//     else {
+//         std::cout << "Error to parse tile_type. Specify a correct type: [CONV, FC, POOL]" << std::endl;
+//         exit(1);
+//     }
 
-    if(*tile_type=="CONV") {
-        // if generateTile is specified then generate a FC tile configuration for the layer
-        if (tileGeneratorTarget_str && (tileGeneratorTarget = parseTileGeneratorTarget(*tileGeneratorTarget_str)) != TileGenerator::Target::NONE) {
-            if (tileGenerator_str)
-                tileGenerator = parseTileGenerator(*tileGenerator_str);
-            generateTile(tileGenerator, tileGeneratorTarget);
-            return;
-        }
-        // in other case, parse all arguments and load the tile
-        else {
-            if(!T_R) {
-                std::cout << "Error to parse T_R. Value not found." << std::endl;
-                exit(1);
-            }
+//     if(*tile_type=="CONV") {
+//         // if generateTile is specified then generate a FC tile configuration for the layer
+//         if (tileGeneratorTarget_str && (tileGeneratorTarget = parseTileGeneratorTarget(*tileGeneratorTarget_str)) != TileGenerator::Target::NONE) {
+//             if (tileGenerator_str)
+//                 tileGenerator = parseTileGenerator(*tileGenerator_str);
+//             generateTile(tileGenerator, tileGeneratorTarget);
+//             return;
+//         }
+//         // in other case, parse all arguments and load the tile
+//         else {
+//             if(!T_R) {
+//                 std::cout << "Error to parse T_R. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_S) {
-                std::cout << "Error to parse T_S. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_S) {
+//                 std::cout << "Error to parse T_S. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_C) {
-                std::cout << "Error to parse T_C. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_C) {
+//                 std::cout << "Error to parse T_C. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_K) {
-                std::cout << "Error to parse T_K. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_K) {
+//                 std::cout << "Error to parse T_K. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_G) {
-                std::cout << "Error to parse T_G. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_G) {
+//                 std::cout << "Error to parse T_G. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_N) {
-                std::cout << "Error to parse T_N. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_N) {
+//                 std::cout << "Error to parse T_N. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_X_) {
-                std::cout << "Error to parse T_X'. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_X_) {
+//                 std::cout << "Error to parse T_X'. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_Y_) {
-                std::cout << "Error to parse T_Y'. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_Y_) {
+//                 std::cout << "Error to parse T_Y'. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            //Filling the parameters
-            loadTile(*T_R, *T_S, *T_C, *T_K, *T_G, *T_N, *T_X_, *T_Y_);
-        }
+//             //Filling the parameters
+//             loadTile(*T_R, *T_S, *T_C, *T_K, *T_G, *T_N, *T_X_, *T_Y_);
+//         }
 
-    }
+//     }
 
-    else if(*tile_type=="FC") {
-        // if generateTile is specified then generate a FC tile configuration for the layer
-        if (tileGeneratorTarget_str && (tileGeneratorTarget = parseTileGeneratorTarget(*tileGeneratorTarget_str)) != TileGenerator::Target::NONE) {
-            if (tileGenerator_str)
-                tileGenerator = parseTileGenerator(*tileGenerator_str);
-            generateTile(tileGenerator, tileGeneratorTarget);
-            return;
-        }
-        // in other case, parse all arguments and load the tile
-        else {
-            if(!T_N) {
-                std::cout << "Error to parse T_N. Value not found." << std::endl;
-                exit(1);
-            }
+//     else if(*tile_type=="FC") {
+//         // if generateTile is specified then generate a FC tile configuration for the layer
+//         if (tileGeneratorTarget_str && (tileGeneratorTarget = parseTileGeneratorTarget(*tileGeneratorTarget_str)) != TileGenerator::Target::NONE) {
+//             if (tileGenerator_str)
+//                 tileGenerator = parseTileGenerator(*tileGenerator_str);
+//             generateTile(tileGenerator, tileGeneratorTarget);
+//             return;
+//         }
+//         // in other case, parse all arguments and load the tile
+//         else {
+//             if(!T_N) {
+//                 std::cout << "Error to parse T_N. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_S) {
-                std::cout << "Error to parse T_S. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_S) {
+//                 std::cout << "Error to parse T_S. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            if(!T_K) {
-                std::cout << "Error to parse T_K. Value not found." << std::endl;
-                exit(1);
-            }
+//             if(!T_K) {
+//                 std::cout << "Error to parse T_K. Value not found." << std::endl;
+//                 exit(1);
+//             }
 
-            //Filling the parameters
-            loadFCTile(*T_S, *T_N, *T_K);
-        }
-    }
+//             //Filling the parameters
+//             loadFCTile(*T_S, *T_N, *T_K);
+//         }
+//     }
 
-    //Folding is not specified in this case since this use case is not to load the tile into the architecture. Rather, it is to load the tile from the file and layer specify all the parameters
-    // to the architecture by means of some abstractions like an instruction.
+//     //Folding is not specified in this case since this use case is not to load the tile into the architecture. Rather, it is to load the tile from the file and layer specify all the parameters
+//     // to the architecture by means of some abstractions like an instruction.
 
-} //End parser
+// } //End parser
 
 // General tile generation function for each type of layer
 // The sparsity (if specified) must be between 0 and 1
-void Stonne::generateTile(TileGenerator::Generator generator, TileGenerator::Target target, float MK_sparsity) {
-    std::cout << "Generating a tile automatically..." << std::endl;
-    std::cout << "Using generator <" << parseTileGenerator(generator) << "> and target <" << parseTileGeneratorTarget(target) << ">" << std::endl;
+// void Stonne::generateTile(TileGenerator::Generator generator, TileGenerator::Target target, float MK_sparsity) {
+//     std::cout << "Generating a tile automatically..." << std::endl;
+//     std::cout << "Using generator <" << parseTileGenerator(generator) << "> and target <" << parseTileGeneratorTarget(target) << ">" << std::endl;
 
-    assert(MK_sparsity >= 0 && MK_sparsity <= 1); // implementation check, user will not see it
+//     assert(MK_sparsity >= 0 && MK_sparsity <= 1); // implementation check, user will not see it
 
-    TileGenerator::TileGenerator tileGenerator(stonne_cfg.m_MSNetworkCfg.ms_size,
-                                               stonne_cfg.m_SDMemoryCfg.n_read_ports,
-                                               stonne_cfg.m_SDMemoryCfg.n_write_ports,
-                                               generator);
+//     TileGenerator::TileGenerator tileGenerator(stonne_cfg.m_MSNetworkCfg.ms_size,
+//                                                stonne_cfg.m_SDMemoryCfg.n_read_ports,
+//                                                stonne_cfg.m_SDMemoryCfg.n_write_ports,
+//                                                generator);
 
-    switch (dnn_layer->get_layer_type()) {
-        case Layer_t::CONV: { // Generates a tile using the Stonne CONV parameters
-            unsigned int R = dnn_layer->get_R();
-            unsigned int S = dnn_layer->get_S();
-            unsigned int C = dnn_layer->get_C();
-            unsigned int K = dnn_layer->get_K();
-            unsigned int G = dnn_layer->get_G();
-            unsigned int N = dnn_layer->get_N();
-            unsigned int X = dnn_layer->get_X();
-            unsigned int Y = dnn_layer->get_Y();
-            unsigned int strides = dnn_layer->get_strides();
-            unsigned int X_ = (X - R + strides) / strides;
-            unsigned int Y_ = (Y - S + strides) / strides;
+//     switch (dnn_layer->get_layer_type()) {
+//         case Layer_t::CONV: { // Generates a tile using the Stonne CONV parameters
+//             unsigned int R = dnn_layer->get_R();
+//             unsigned int S = dnn_layer->get_S();
+//             unsigned int C = dnn_layer->get_C();
+//             unsigned int K = dnn_layer->get_K();
+//             unsigned int G = dnn_layer->get_G();
+//             unsigned int N = dnn_layer->get_N();
+//             unsigned int X = dnn_layer->get_X();
+//             unsigned int Y = dnn_layer->get_Y();
+//             unsigned int strides = dnn_layer->get_strides();
+//             unsigned int X_ = (X - R + strides) / strides;
+//             unsigned int Y_ = (Y - S + strides) / strides;
 
-            // Generate tile and print it on the screen
-            TileGenerator::ConvTile tile = tileGenerator.generateConvTile(R, S, C, K, G, N, X, Y, X_, Y_, strides, target);
+//             // Generate tile and print it on the screen
+//             TileGenerator::ConvTile tile = tileGenerator.generateConvTile(R, S, C, K, G, N, X, Y, X_, Y_, strides, target);
 
-            std::cout << "Generated tile: <T_R=" << tile.T_R << ", T_S=" << tile.T_S << ", T_C=" << tile.T_C << ", T_K=" << tile.T_K << ", T_G=" << tile.T_G << ", T_N=" << tile.T_N << ", T_X'=" << tile.T_X_ << ", T_Y'=" << tile.T_Y_ << ">" << std::endl;
+//             std::cout << "Generated tile: <T_R=" << tile.T_R << ", T_S=" << tile.T_S << ", T_C=" << tile.T_C << ", T_K=" << tile.T_K << ", T_G=" << tile.T_G << ", T_N=" << tile.T_N << ", T_X'=" << tile.T_X_ << ", T_Y'=" << tile.T_Y_ << ">" << std::endl;
 
-            // Loads the generated tile and checks parameters
-            loadTile(tile.T_R, tile.T_S, tile.T_C, tile.T_K, tile.T_G, tile.T_N, tile.T_X_, tile.T_Y_);
-            break;
-        }
+//             // Loads the generated tile and checks parameters
+//             loadTile(tile.T_R, tile.T_S, tile.T_C, tile.T_K, tile.T_G, tile.T_N, tile.T_X_, tile.T_Y_);
+//             break;
+//         }
 
-        case Layer_t::FC:
-        case Layer_t::GEMM: { // Generates a tile using the Stonne FC parameters
-            // See Stonne::loadDenseGEMM for reference to this map
-            unsigned int M = dnn_layer->get_X();
-            unsigned int N = dnn_layer->get_K();
-            unsigned int K = dnn_layer->get_S();
+//         case Layer_t::FC:
+//         case Layer_t::GEMM: { // Generates a tile using the Stonne FC parameters
+//             // See Stonne::loadDenseGEMM for reference to this map
+//             unsigned int M = dnn_layer->get_X();
+//             unsigned int N = dnn_layer->get_K();
+//             unsigned int K = dnn_layer->get_S();
 
-            // Generate tile and get it's fields
-            TileGenerator::DenseGemmTile tile = tileGenerator.generateDenseGemmTile(M, N, K, target);
+//             // Generate tile and get it's fields
+//             TileGenerator::DenseGemmTile tile = tileGenerator.generateDenseGemmTile(M, N, K, target);
 
-            std::cout << "Generated tile: <T_M=" << tile.T_M << ", T_N=" << tile.T_N << ", T_K=" << tile.T_K << ">" << std::endl;
+//             std::cout << "Generated tile: <T_M=" << tile.T_M << ", T_N=" << tile.T_N << ", T_K=" << tile.T_K << ">" << std::endl;
 
-            // Loads the generated tile and checks parameters
-            if (dnn_layer->get_layer_type() == Layer_t::FC)
-                loadFCTile(tile.T_K, tile.T_M, tile.T_N);
-            else // dnn_layer->get_layer_type() == Layer_t::GEMM
-                loadGEMMTile(tile.T_N, tile.T_K, tile.T_M);
+//             // Loads the generated tile and checks parameters
+//             if (dnn_layer->get_layer_type() == Layer_t::FC)
+//                 loadFCTile(tile.T_K, tile.T_M, tile.T_N);
+//             else // dnn_layer->get_layer_type() == Layer_t::GEMM
+//                 loadGEMMTile(tile.T_N, tile.T_K, tile.T_M);
 
-            break;
-        }
+//             break;
+//         }
 
-        case Layer_t::SPARSE_DENSE: { // Generates a tile using the Stonne SparseDense parameters
-            unsigned long long M = dnn_layer->get_N();
-            unsigned long long N = dnn_layer->get_K();
-            unsigned long long K = dnn_layer->get_C();
+//         case Layer_t::SPARSE_DENSE: { // Generates a tile using the Stonne SparseDense parameters
+//             unsigned long long M = dnn_layer->get_N();
+//             unsigned long long N = dnn_layer->get_K();
+//             unsigned long long K = dnn_layer->get_C();
 
-            // Generate tile and get it's fields
-            TileGenerator::SparseDenseTile tile = tileGenerator.generateSparseDenseTile(M, N, K, MK_sparsity, target);
+//             // Generate tile and get it's fields
+//             TileGenerator::SparseDenseTile tile = tileGenerator.generateSparseDenseTile(M, N, K, MK_sparsity, target);
 
-            std::cout << "Generated tile: <T_N=" << tile.T_N << ", T_K=" << tile.T_K << ">" << std::endl;
+//             std::cout << "Generated tile: <T_N=" << tile.T_N << ", T_K=" << tile.T_K << ">" << std::endl;
 
 
-            // Loads the generated tile and checks parameters
-            loadSparseDenseTile(tile.T_N, tile.T_K);
-            break;
-        }
-        default: {
-            std::cout << "Error: Unknown layer type." << std::endl;
-            assert(false);
-        }
-    }
+//             // Loads the generated tile and checks parameters
+//             loadSparseDenseTile(tile.T_N, tile.T_K);
+//             break;
+//         }
+//         default: {
+//             std::cout << "Error: Unknown layer type." << std::endl;
+//             assert(false);
+//         }
+//     }
 
-}
+// }
 
 
 void Stonne::run() {
@@ -558,6 +636,7 @@ void Stonne::cycle() {
         this->mem->cycle();
         auto end = std::chrono::steady_clock::now();
         this->time_mem+=std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        //std::cout<<"mem completed"<<std::endl;
 
         start = std::chrono::steady_clock::now();
         //this->lt->cycle();
@@ -565,6 +644,24 @@ void Stonne::cycle() {
         this->time_lt+=std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 
         this->collectionBus->cycle(); 
+
+        // add 
+        if(pooling_enabled){
+            start = std::chrono::steady_clock::now();
+            //std::cout<<"poolingnet start"<<std::endl;
+            this->poolingnet->cycle();
+            end = std::chrono::steady_clock::now();
+            this->time_pooling+=std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+            //std::cout<<"poolingnet completed"<<std::endl;
+        }
+
+        // add
+        start = std::chrono::steady_clock::now();
+        this->updatenet->cycle();
+        end = std::chrono::steady_clock::now();
+        this->time_update+=std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+        //std::cout<<"updatenet completed"<<std::endl;
+
 
         start = std::chrono::steady_clock::now();
         this->asnet->cycle();
@@ -586,6 +683,8 @@ void Stonne::cycle() {
         execution_finished = this->mem->isExecutionFinished();
         
         this->n_cycles++;
+
+        //if(this->n_cycles > 25) { assert(1==0);}
     }
 
     if(this->stonne_cfg.print_stats_enabled) { //If sats printing is enable
@@ -598,6 +697,8 @@ void Stonne::cycle() {
     std::cout << "Number of cycles running: " << this->n_cycles << std::endl;
     std::cout << "Time mem: " << time_mem/1000000 << std::endl;
     std::cout << "Time lt: " << time_lt/1000000 << std::endl;
+    std::cout << "Time pooling: "<<time_pooling/1000000 <<std::endl;
+    std::cout << "Time update: " << time_update/1000000 <<std::endl;
     std::cout << "Time as: " << time_as/1000000 << std::endl;
     std::cout << "Time ms: " << time_ms/1000000 << std::endl;
     std::cout << "Time ds: " << time_ds/1000000 << std::endl;

@@ -176,6 +176,11 @@ void Config::loadFile(std::string config_file) {
 }
 
 void Config::reset() {
+// SNN parameter
+    V_th = 0;
+    Timestamp = 1;
+    layer_type = CONV;
+    pooling_type = MAXPOOLING; 
 
 //General parameters
     print_stats_enabled=1;

@@ -138,7 +138,6 @@ DataPackage* Accumulator::perform_operation_2_operands(DataPackage* pck_left, Da
      
 }
 
-
 void Accumulator::route() {
     DataPackage* pck_received;
     if(!input_fifo->isEmpty()) {
@@ -150,13 +149,16 @@ void Accumulator::route() {
 	        this->accumulatorStats.n_register_writes++;   //To track the stats
         }
         else {
-            result = perform_operation_2_operands(this->temporal_register, pck_received);
+            result = perform_operation_2_operands(this->temporal_register, pck_received);  // 是用new实例化得到的
 	        this->accumulatorStats.n_register_reads++; //To track the stats
             delete this->temporal_register;
             delete pck_received;
             this->temporal_register = result;
 	        this->accumulatorStats.n_register_writes++;  //To track the stats
         }
+        
+        // add
+        //std::cout<<"the number of accumulator is ["<<this->n_accumulator<<"] and the result is ["<<this->temporal_register->get_data()<<"]"<<std::endl;
 
         if(this->current_psum == (this->n_psums-1)) {  // 累加结束后，将结果放入output_fifo中
             this->output_fifo->push(this->temporal_register);

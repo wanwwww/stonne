@@ -7,17 +7,17 @@
 #define STONNE_WORD_SIZE 1
 #define IND_SIZE 4
 
-typedef float data_t;
+typedef int data_t;
 typedef unsigned int bandwidth_t;
 typedef unsigned int id_t;
 typedef unsigned int cycles_t;
-typedef float* address_t;
+typedef int* address_t;
 typedef unsigned int counter_t;
 typedef unsigned int latency_t;
 typedef unsigned int* metadata_address_t;
 
 
-enum operand_t {WEIGHT, IACTIVATION, OACTIVATION, PSUM};
+enum operand_t {WEIGHT, IACTIVATION, OACTIVATION, PSUM, VTH, SPIKE};
 enum traffic_t {BROADCAST, MULTICAST, UNICAST}; // 广播、多播、单播
 enum direction_t {LEFT, RIGHT};
 //Adder configuration signals
@@ -36,8 +36,9 @@ enum Dataflow{CNN_DATAFLOW, MK_STA_KN_STR, MK_STR_KN_STA, SPARSE_DENSE_DATAFLOW}
 enum GENERATION_TYPE{GEN_BY_ROWS, GEN_BY_COLS};
 enum WIRE_TYPE{RN_WIRE, MN_WIRE, DN_WIRE};
 
+enum adderoperation_t {ADDER, COMPARATOR, MULTIPLIER, NOP, UPDATE, POOLING};
 
-enum adderoperation_t {ADDER, COMPARATOR, MULTIPLIER, NOP};
+enum pooling_t {MAXPOOLING, AVERAGEPOOLING};
 
 //Testbench
 enum layerTest {TINY, LATE_SYNTHETIC, EARLY_SYNTHETIC, VGG_CONV11, VGG_CONV1};

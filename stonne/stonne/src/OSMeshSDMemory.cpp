@@ -4,6 +4,8 @@
 #include <iostream>
 #include "utility.h"
 
+#include "NeuronStateUpdater.h"
+
 OSMeshSDMemory::OSMeshSDMemory(id_t id, std::string name, Config stonne_cfg, Connection* write_connection) : MemoryController(id, name) {
     this->write_connection = write_connection;  // 这个连接是和查找表的连接 
     //Collecting parameters from the configuration file
@@ -47,6 +49,19 @@ OSMeshSDMemory::OSMeshSDMemory(id_t id, std::string name, Config stonne_cfg, Con
     this->current_K=0;
     this->iteration_completed=false;
     this->n_iterations_completed=0;
+
+    // add
+    this->current_progress = 0;
+    this->current_Timestamp = 0;
+    this->iter_Timestamp = stonne_cfg.Timestamp;
+    this->n_timestamp_completed = 0;
+
+    if(stonne_cfg.layer_type==GEMM || stonne_cfg.layer_type==CONV){
+        this->pooling_enabled = true;
+    } else {
+        this->pooling_enabled = false;
+    }
+
 }
 
 OSMeshSDMemory::~OSMeshSDMemory() {
@@ -72,20 +87,26 @@ void OSMeshSDMemory::setReadConnections(std::vector<Connection*> read_connection
 }
 
 // 设置加载的层 
-void OSMeshSDMemory::setLayer(DNNLayer* dnn_layer, address_t MK_address, address_t KN_address, address_t output_address, Dataflow dataflow) {
+void OSMeshSDMemory::setLayer(DNNLayer* dnn_layer, address_t MK_address, address_t KN_address, address_t output_address, address_t neuron_state, Dataflow dataflow) {
     this->dnn_layer = dnn_layer;
     //assert(this->dnn_layer->get_layer_type()==DenseGEMM);  // This controller only supports GEMM with one sparse and one dense
     //this->dataflow = dataflow; 
 
     this->output_address = output_address;
+    this->neuron_state = neuron_state;
     this->layer_loaded = true;
 
 
     //Loading parameters according to the equivalence between CNN layer and GEMM. This is done
     //in this way to keep the same interface.
-    this->M = this->dnn_layer->get_X();
-    this->K = this->dnn_layer->get_S();   //Be careful. K in GEMMs (SIGMA taxonomy) is not the same as K in CNN taxonomy (number of filters)
+    this->M = this->dnn_layer->get_X_()*this->dnn_layer->get_Y_();
+    std::cout<<" M  :  "<<this->M<<std::endl;
+    //this->M = this->dnn_layer->get_X();
+    //this->K = this->dnn_layer->get_S();   //Be careful. K in GEMMs (SIGMA taxonomy) is not the same as K in CNN taxonomy (number of filters)
+    this->K = this->dnn_layer->get_R()*this->dnn_layer->get_S()*this->dnn_layer->get_C(); 
+    std::cout<<" K  :  "<<this->K<<std::endl;
     this->N = this->dnn_layer->get_K();  //In this case both parameters match each other.
+    std::cout<<" N  :  "<<this->N<<std::endl;
 
     sdmemoryStats.dataflow=dataflow; 
     
@@ -117,6 +138,8 @@ void OSMeshSDMemory::setTile(Tile* current_tile)
 // 负责管理数据的发送和接收以及状态转换 
 
 void OSMeshSDMemory::cycle() {
+    //std::cout<<"Calling the memory controller "<<std::endl;
+
     //Sending input data over read_connection
     assert(this->layer_loaded);  // Layer has been loaded
     
@@ -127,12 +150,14 @@ void OSMeshSDMemory::cycle() {
     this->sdmemoryStats.total_cycles++; //To track information
 
     // 配置状态 
-    if(current_state==OS_CONFIGURING)  // 
+    if(current_state==OS_CONFIGURING) 
     {	//Initialize these for the first time
+        //std::cout<<"Calling the memory controller and the cycle is "<<this->local_cycle<<std::endl;
         this->sdmemoryStats.n_reconfigurations++;
         //std::cout<<"this->sdmemoryStats.n_reconfigurations(OSMeshSDMemory.cpp) : "<<this->sdmemoryStats.n_reconfigurations<<std::endl;
         unsigned int remaining_M = M - (current_M*T_M);
         unsigned int remaining_N = N - (current_N*T_N);
+        //std::cout<<"1"<<std::endl;
         // 实际使用的行数和列数 
         this->cols_used = (remaining_N < T_N) ? remaining_N: T_N; //min(remaining_N, T_N) 
         this->rows_used = (remaining_M < T_M) ? remaining_M: T_M;
@@ -144,12 +169,30 @@ void OSMeshSDMemory::cycle() {
         this->multiplier_network->configureSignals(tile1, this->dnn_layer, this->ms_rows, this->ms_cols);
         // 配置AN，也就是配置AN中每个AS需要进行累加部分和的次数为iter_k，即配置AS的变量n_psums为iter_k
         this->reduce_network->configureSignals(tile1, this->dnn_layer, this->ms_rows*this->ms_cols, this->iter_K);
+        //std::cout<<"2"<<std::endl;
+        // add
+        // 配置池化网络
+        this->pooling_network->configureSignals(tile1, this->ms_rows, this->ms_cols);
+
         iteration_completed=false;
+        //std::cout<<"config complete"<<std::endl;
+
+        // 当前PE完成处理需要往内存中写多少次
+        if(this->pooling_enabled){
+            this->all_timestamp_required_output = iter_Timestamp*M*N+iter_Timestamp*M*N/4;
+            this->one_timestamp_required_output = M*N+M*N/4;
+            this->one_PE_requierd_output = this->rows_used*this->cols_used+this->rows_used*this->cols_used/4;
+        } else{
+            this->all_timestamp_required_output = iter_Timestamp*2*M*N;
+            this->one_timestamp_required_output = 2*M*N;
+            this->one_PE_requierd_output = 2*this->rows_used*this->cols_used;
+        }
     }
     
-
     // 分发数据状态，分发的是当前tile的数据 
     if(current_state == OS_DIST_INPUTS) {
+
+        std::cout<<"Current timestamp : "<<current_Timestamp<<std::endl;
         
         //Distribution of the stationary matrix
         unsigned int dest = 0; //MS destination
@@ -161,19 +204,25 @@ void OSMeshSDMemory::cycle() {
             int index_N=current_N*T_N;
             // 从内存中读取输入，每次取一个数据 
             data = this->KN_address[(index_N+i)*this->K + this->current_K]; //Notice that in dense operation the KN matrix is actually NK 
+            std::cout<<"the address of weight is : "<<(index_N+i)*this->K + this->current_K<<std::endl;
+            std::cout<<"The weight taken out is : "<<data<<std::endl;
+            //std::cout<<std::endl;
             sdmemoryStats.n_SRAM_weight_reads++;  
             // (size_t size_package, data_t data, operand_t data_type, id_t source,traffic_t traffic_type, unsigned int unicast_dest) : 
             DataPackage* pck_to_send = new DataPackage(sizeof(data_t), data, WEIGHT, 0, UNICAST, i);
             //std::cout<<"old data : "<<pck_to_send->getIterationK()<<std::endl;
             this->sendPackageToInputFifos(pck_to_send);  // 将取出的数据发送到内存相应读端口的fifo中
         }
-
+        std::cout<<std::endl;
         //SENDING M PACKAGES. Note that not delay is necessary as the fifos will carry out these delays 
         // M个数据包：激活数据。从内存中读取的延迟放在fifo中考虑
         for(int i=0; i<rows_used; i++) {  // 每次循环取出一列数据（个数是实际使用的行数），依次取出iter_K列数据 
             data_t data;//Accessing to memory
-            int index_M=current_M*T_M;
-            data = this->MK_address[(index_M+i)*this->K + this->current_K]; 
+            int index_M=current_M*T_M;  // 注意input数据读取的地址
+            data = this->MK_address[current_Timestamp*M*K+(index_M+i)*this->K + this->current_K]; 
+            std::cout<<"the address of input is : "<<current_Timestamp*M*K+(index_M+i)*this->K + this->current_K<<std::endl;
+            std::cout<<"The input taken out is : "<<data<<std::endl;
+            std::cout<<std::endl;
             sdmemoryStats.n_SRAM_input_reads++;  
             DataPackage* pck_to_send = new DataPackage(sizeof(data_t), data, IACTIVATION, 0, UNICAST, i+this->ms_cols);
             this->sendPackageToInputFifos(pck_to_send);
@@ -194,6 +243,11 @@ void OSMeshSDMemory::cycle() {
                 this->current_N = 0;
                 this->current_M+=1;   
                 this->iteration_completed=true;  // 表示完成一次T_M行与T_N列的计算 
+                if(this->current_M == this->iter_M) {
+                    this->current_M = 0;
+                    this->current_Timestamp+=1;
+                    this->iteration_completed = true;  // 表示完成一个时间步的计算 
+                }
             } 
         } 
        
@@ -205,7 +259,7 @@ void OSMeshSDMemory::cycle() {
     this->receive(); // 接收write_connection和write_port_connections的数据，将其存放在write_fifo中
 
     if(!write_fifo->isEmpty()) {
-        std::cout<<"the length of write_fifo : "<<write_fifo->size()<<std::endl;
+        std::cout<<"the length of write_fifo(OSMeshSDMemory.cpp) : "<<write_fifo->size()<<std::endl;
         //Index the data by using the VN Address Table and the VN id of the packages
         std::size_t write_fifo_size = write_fifo->size();
         for(int i=0; i<write_fifo_size; i++) {
@@ -223,29 +277,71 @@ void OSMeshSDMemory::cycle() {
             // 当前虚拟节点在当前数据块内的行和列位置。
             unsigned int vn_M_pointer = vn / this->cols_used;
             unsigned int vn_N_pointer = vn % this->cols_used;
+            unsigned int timestamp_offset = n_timestamp_completed*M*N; // 已经计算完毕的偏移量 
+            unsigned int timestamp_offset_pooling = n_timestamp_completed*M*N/4 ;  // 带有池化模块的计算完毕的偏移量 
             unsigned int addr_offset = (current_tile_M_pointer+vn_M_pointer)*this->N + current_tile_N_pointer + vn_N_pointer; 
+            unsigned int addr_pooling = ((current_tile_M_pointer+vn_M_pointer)/2)*this->N/2 + (current_tile_N_pointer + vn_N_pointer)/2;
             vnat_table[vn]++; // 记录每个虚拟节点的访问次数 
-            this->output_address[addr_offset]=data; //ofmap or psum, it does not matter.
 
-            current_output++;
-
-            if((current_output % 10000) == 0) {
-                std::cout << "Output completed " << current_output << "/" << M*N << ")" << std::endl;
+            // modify
+            // 根据数据类型判断将数据写入输出内存还是膜电位内存
+            switch (pck_received->get_data_type()){
+                case VTH:
+                    this->neuron_state[addr_offset] = data;
+                    //std::cout<<"the data type is neuron state"<<std::endl;
+                    break;
+                case SPIKE:
+                    if(pooling_enabled){
+                        this->output_address[addr_pooling+timestamp_offset_pooling] = data;
+                        //std::cout<<"-------------------------------------------------- the address of spike with pooling "<<addr_pooling<<std::endl;
+                    } else {
+                        this->output_address[timestamp_offset+addr_offset] = data;
+                    }
+                    //std::cout<<"the data type is spike"<<std::endl;
+                    break;
+                default:
+                    assert(false);
             }
-            
-            if(current_output == M*N) {
-                execution_finished=true;
+
+            current_progress++;  // 总的输出进度 
+            current_output++;  // 当前时间步的输出进度 
+            current_output_iteration++;  // 当前PE阵列计算的进度
+
+            //std::cout<<""<<std::endl;
+
+            // if(current_output == 2*M*N) {
+            //     current_Timestamp++;
+            //     current_output = 0;
+            //     if(current_Timestamp == iter_Timestamp){
+            //         execution_finished=true;
+            //     }
+            // }
+
+            if((current_progress % 10000) == 0) {
+                std::cout << "Output completed " << current_progress << "/" << M*N << ")" << std::endl;
             }
 
-            current_output_iteration++;
+            std::cout<<"The total number of outputs required : "<<this->all_timestamp_required_output<<std::endl;
+            std::cout<<"Current number of outputs : "<<current_progress<<std::endl;
 
-            if(current_output_iteration==(this->rows_used*this->cols_used)) {  // PE阵列完成一次计算 
+            if(current_progress == (this->all_timestamp_required_output)){
+                execution_finished = true;
+            }
+
+            if(current_output_iteration==this->one_PE_requierd_output) {  // PE阵列完成一次计算 
                 current_output_iteration = 0;
-                n_iterations_completed++;
+                n_iterations_completed++;  // 一个时间步中使用PE阵列进行计算完成的次数 
                 if(current_state == OS_WAITING_FOR_NEXT_ITER) {
                     iteration_completed=true;
                 }
             }
+
+            if(current_output == this->one_timestamp_required_output){  // 完成一个时间步的计算 
+                n_iterations_completed = 0;
+                current_output = 0;
+                n_timestamp_completed++;
+            }
+
             delete pck_received; //Deleting the current package
             //std::cout<<"the length of write_fifo (after) : "<<write_fifo->size()<<std::endl;
         }
@@ -259,7 +355,7 @@ void OSMeshSDMemory::cycle() {
     }
     else if(current_state==OS_DIST_INPUTS) {
         if(iteration_completed) {
-            if(current_M >= this->iter_M) { //Change the to change the dataflow
+            if(current_Timestamp >= this->iter_Timestamp) { //Change the to change the dataflow
                 current_state=OS_ALL_DATA_SENT;  // 所有数据已经发送
             }
 	        else {
@@ -425,13 +521,12 @@ void OSMeshSDMemory::receive() { //TODO control if there is no space in queue
         if(write_port_connections[i]->existPendingData()) {
             std::vector<DataPackage*> data_received = write_port_connections[i]->receive();
              for(int i=0; i<data_received.size(); i++) {
-                 write_fifo->push(data_received[i]);
+                //std::cout<<"the length of dataPackage(OSMeshSDMemory.cpp) : "<<data_received.size()<<std::endl;
+                write_fifo->push(data_received[i]);
              }
         }    
     }
 }
-
-
 
 
 void OSMeshSDMemory::printStats(std::ofstream& out, unsigned int indent) {

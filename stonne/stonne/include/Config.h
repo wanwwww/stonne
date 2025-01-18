@@ -119,6 +119,12 @@ public:
 
 class Config {
 public:
+    // SNN parameter
+    data_t V_th;
+    int Timestamp;
+    Layer_t layer_type;
+    pooling_t pooling_type;
+
     //General parameters
     unsigned int print_stats_enabled;    //Specified whether the statistics must be printed. 
     

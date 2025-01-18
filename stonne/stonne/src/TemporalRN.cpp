@@ -44,24 +44,15 @@ TemporalRN::~TemporalRN() {
 
 }
 
-// 设置与内存的连接，实际上是总线的接口，归约网络的输出数据通过总线写入内存 
-void TemporalRN::setMemoryConnections(std::vector<std::vector<Connection*>>  memoryConnections) {
-    unsigned int n_bus_lines = memoryConnections.size();
+// 设置与内存的连接，实际上是与总线的接口，归约网络的输出数据通过总线写入内存 
+void TemporalRN::setMemoryConnections(std::vector<Connection*> memoryConnections) {
 
-    // 每个累积单元根据索引分配到不同总线（busID）和输入通道（inputID）
-    for(int i=0; i<this->accumulation_buffer_size; i++) {
-        unsigned  int inputID = (i / n_bus_lines);
-        unsigned int busID = i % n_bus_lines;
-        Connection* mem_conn = memoryConnections[busID][inputID];
-        outputconnectiontable.push_back(mem_conn);
-    }
-
-    //Finally we connect the output links with the memory 
+    this->outputconnectiontable = memoryConnections;
     this->accumulationBuffer->setMemoryConnections(outputconnectiontable);
 
 }
 
-// 返回与累积缓冲区的连接，从向量转换为映射 
+// 返回输入连接，从向量转换为映射 
 std::map<int, Connection*> TemporalRN::getLastLevelConnections() {
     //Converting from vector to map for questions of compatibility with the rest of the code
     std::map<int, Connection*> last_level_connections; 

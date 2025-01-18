@@ -44,10 +44,12 @@ void Connection::send(vector<DataPackage*> data_p) {
 // 从连接中接收数据  
 //Return the packages from the interconnection
 vector<DataPackage*> Connection::receive() { 
+    
     if(this->pending_data) {
             this->pending_data = false;
 	    return this->data;
     }
+
     //If there is no pending data
     data.clear(); //Set the list of elements to return to 0
     this->pending_data = false;
